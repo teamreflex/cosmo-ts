@@ -1,0 +1,22 @@
+{
+  "name": "cosmo-ts",
+  "version": "1.0.0",
+  "description": "TypeScript library for interfacing with the Cosmo app API.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsup src/index.ts --watch --onSuccess 'node dist/index.js'",
+    "build": "tsup src/index.ts",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.5"
+  },
+  "dependencies": {
+    "untypeable": "^0.2.1"
+  }
+}
