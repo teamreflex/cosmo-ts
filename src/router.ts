@@ -20,14 +20,13 @@ export const router = artistRouter
   .merge(seasonRouter);
 
 export function createDefaultFetcher(options: FetcherOptions = {}) {
-  return (path: string, method: "GET" | "POST", input = {}) => {
-    const pathWithParams = path.replace(
-      /:([a-zA-Z0-9_]+)/g,
-      (_, key) => input[key]
+  return (path: string, method: "GET" | "POST", input: ValidInput = {}) => {
+    const pathWithParams = path.replace(/:([a-zA-Z0-9_]+)/g, (_, key) =>
+      input[key].toString()
     );
 
     let resolvedPath = pathWithParams;
-    let resolvedInit: RequestInit = {
+    let init: RequestInit = {
       method,
       headers: {
         "Content-Type": "application/json",
@@ -39,22 +38,45 @@ export function createDefaultFetcher(options: FetcherOptions = {}) {
 
     switch (method) {
       case "GET":
-        resolvedPath += `?${new URLSearchParams(input)}`;
+        const params = parseParams(path, input);
+        resolvedPath += `?${params.toString()}`;
         break;
       case "POST":
-        resolvedInit = {
-          ...resolvedInit,
+        init = {
+          ...init,
           body: JSON.stringify(input),
         };
     }
 
     return makeFetch(
-      `${COSMO_ENDPOINT}${pathWithParams}`,
-      resolvedInit,
+      `${COSMO_ENDPOINT}${resolvedPath}`,
+      init,
       0,
       options.maxRetries ?? 3
     );
   };
+}
+
+type ValidInput = Record<string, string | number | boolean>;
+
+/**
+ * Prevent any path replacements from also being in the query string.
+ */
+function parseParams(path: string, input: ValidInput): URLSearchParams {
+  const params = new URLSearchParams();
+
+  // get clean path params
+  const segments = (path.match(/:(\w+)/g) ?? []).map((s: string) => s.slice(1));
+
+  // add any inputs that don't exist as path params, into query params
+  for (const [key, value] of Object.entries(input)) {
+    if (segments.includes(key) || value === undefined) {
+      continue;
+    }
+    params.set(key, value.toString());
+  }
+
+  return params;
 }
 
 function makeFetch(
@@ -81,7 +103,8 @@ function makeFetch(
       throw new HTTPError(res.statusText);
     });
   } catch (err) {
-    if (currentRetry <= maxRetries) {
+    const isRetryable = err instanceof HTTPError;
+    if (isRetryable && currentRetry <= maxRetries) {
       return makeFetch(url, init, currentRetry + 1, maxRetries);
     }
 

@@ -10,7 +10,7 @@ test("fetches home page news", async () => {
 
 test("fetches atmosphere feed", async () => {
   const cosmo = new Cosmo();
-  const result = await cosmo.getAtmosphereFeed("artms");
+  const result = await cosmo.getAtmosphereFeed("artms", { limit: 3 });
   expect(result).toEqual(json.newsFeed);
 });
 
