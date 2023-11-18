@@ -1,11 +1,15 @@
 import { expect, test } from "vitest";
 import { Cosmo } from "../src";
-import { createTestFetcher, getArtists } from "./common";
+import { json } from "./mocks";
 
 test("fetches artists", async () => {
-  const cosmo = new Cosmo({ fetcher: createTestFetcher() });
-
+  const cosmo = new Cosmo();
   const result = await cosmo.getArtists();
+  expect(result).toEqual(json.getArtists.artists);
+});
 
-  expect(result).toEqual(getArtists.artists);
+test("fetches a single artist", async () => {
+  const cosmo = new Cosmo();
+  const result = await cosmo.getArtist("artms");
+  expect(result).toEqual(json.getArtist.artist);
 });

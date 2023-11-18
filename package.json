@@ -12,6 +12,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "msw": "^2.0.8",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
     "vitest": "^0.34.5"

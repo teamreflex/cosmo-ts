@@ -1,11 +1,17 @@
 import { createTypeLevelClient } from "untypeable";
 import { router as artistRouter } from "./api/artists";
 import { router as userRouter } from "./api/user";
+import { CosmoUnauthenticatedError, HTTPError } from "./error";
+
+export type FetcherOptions = {
+  accessToken?: string;
+  maxRetries?: number;
+};
 
 export const router = artistRouter.merge(userRouter);
 const COSMO_ENDPOINT = "https://api.cosmo.fans";
 
-export function createDefaultFetcher(token?: string) {
+export function createDefaultFetcher(options: FetcherOptions = {}) {
   return (path: string, method: "GET" | "POST", input = {}) => {
     const pathWithParams = path.replace(
       /:([a-zA-Z0-9_]+)/g,
@@ -17,13 +23,15 @@ export function createDefaultFetcher(token?: string) {
       method,
       headers: {
         "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...(options.accessToken
+          ? { Authorization: `Bearer ${options.accessToken}` }
+          : {}),
       },
     };
 
     switch (method) {
       case "GET":
-        resolvedPath += `?${new URLSearchParams(input as any)}`;
+        resolvedPath += `?${new URLSearchParams(input)}`;
         break;
       case "POST":
         resolvedInit = {
@@ -32,16 +40,45 @@ export function createDefaultFetcher(token?: string) {
         };
     }
 
-    return fetch(`${COSMO_ENDPOINT}${pathWithParams}`, resolvedInit).then(
-      (res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-
-        return res.json();
-      }
+    return makeFetch(
+      `${COSMO_ENDPOINT}${pathWithParams}`,
+      resolvedInit,
+      0,
+      options.maxRetries ?? 3
     );
   };
+}
+
+function makeFetch(
+  url: string,
+  init: RequestInit,
+  currentRetry: number,
+  maxRetries: number
+) {
+  try {
+    return fetch(url, init).then((res) => {
+      // success with body
+      if (res.status === 200) {
+        return res.json();
+      }
+      // success without body
+      if (res.status >= 201 && res.status < 300) {
+        return true;
+      }
+      // unauthenticated or unauthorized
+      if (res.status >= 400 && res.status < 403) {
+        throw new CosmoUnauthenticatedError();
+      }
+      // default
+      throw new HTTPError(res.statusText);
+    });
+  } catch (err) {
+    if (currentRetry <= maxRetries) {
+      return makeFetch(url, init, currentRetry + 1, maxRetries);
+    }
+
+    throw err;
+  }
 }
 
 export const typedRouter = (

@@ -5,3 +5,10 @@ export class CosmoUnauthenticatedError extends Error {
 }
 
 export class HTTPError extends Error {}
+
+export type CosmoJsonError = {
+  error: {
+    message: string;
+    details: string;
+  };
+};
