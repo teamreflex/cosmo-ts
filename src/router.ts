@@ -3,14 +3,21 @@ import { CosmoUnauthenticatedError, HTTPError } from "./error";
 import { router as artistRouter } from "./api/artists";
 import { router as userRouter } from "./api/user";
 import { router as authRouter } from "./api/auth";
+import { router as newsRouter } from "./api/news";
+import { router as seasonRouter } from "./api/season";
 
 export type FetcherOptions = {
   accessToken?: string;
   maxRetries?: number;
 };
 
-export const router = artistRouter.merge(userRouter).merge(authRouter);
 const COSMO_ENDPOINT = "https://api.cosmo.fans";
+
+export const router = artistRouter
+  .merge(userRouter)
+  .merge(authRouter)
+  .merge(newsRouter)
+  .merge(seasonRouter);
 
 export function createDefaultFetcher(options: FetcherOptions = {}) {
   return (path: string, method: "GET" | "POST", input = {}) => {

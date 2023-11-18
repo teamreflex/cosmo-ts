@@ -45,4 +45,34 @@ export class Cosmo implements CosmoContract {
   async refreshToken(payload: RefreshPayload) {
     return await this.client("/auth/v1/refresh", "POST", payload);
   }
+
+  async getHomeNews(artist: ValidArtist) {
+    return await this.client("/news/v1", "GET", { artist });
+  }
+
+  async getAtmosphereFeed(
+    artist: ValidArtist,
+    options?: { startAfter?: number; limit?: number }
+  ) {
+    return await this.client("/news/v1/feed", "GET", {
+      artist,
+      start_after: options?.startAfter,
+      limit: options?.limit,
+    });
+  }
+
+  async getExclusiveFeed(
+    artist: ValidArtist,
+    options?: { startAfter?: number; limit?: number }
+  ) {
+    return await this.client("/news/v1/exclusive", "GET", {
+      artist,
+      start_after: options?.startAfter,
+      limit: options?.limit,
+    });
+  }
+
+  async getSeasons(artist: ValidArtist) {
+    return await this.client("/season/v2/:artist", "GET", { artist });
+  }
 }

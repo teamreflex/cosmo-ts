@@ -17,6 +17,16 @@ export const handlers = [
   http.post(cosmo("/auth/v1/refresh"), () =>
     HttpResponse.json(json.refreshToken)
   ),
+
+  // news
+  http.get(cosmo("/news/v1"), () => HttpResponse.json(json.newsHome)),
+  http.get(cosmo("/news/v1/feed"), () => HttpResponse.json(json.newsFeed)),
+  http.get(cosmo("/news/v1/exclusive"), () =>
+    HttpResponse.json(json.newsExclusive)
+  ),
+
+  // season
+  http.get(cosmo("/season/v2/*"), () => HttpResponse.json(json.getSeason)),
 ];
 
 // conditional handlers
@@ -170,6 +180,147 @@ export const json = {
     credentials: {
       accessToken: "accessToken",
       refreshToken: "refreshToken",
+    },
+  },
+
+  newsHome: {},
+
+  newsFeed: {
+    hasNext: true,
+    total: 5,
+    nextStartAfter: "3",
+    results: [
+      {
+        id: 317,
+        url: "https://www.youtube.com/@official_artms",
+        createdAt: "2023-11-06T08:51:38.421Z",
+        artist: "ARTMS",
+        logoImageUrl: "https://static.cosmo.fans/assets/artms-logo.png",
+        body: "On Set of Princess HeeJin's MV  (*˘◡˘*)",
+        imageUrls: [
+          "https://static.cosmo.fans/admin/uploads/48913c70-03ee-4785-ac0d-40455bedb681.jpg",
+          "https://static.cosmo.fans/admin/uploads/6d912cf0-a2af-49d7-a3d7-9d5dfadbd969.jpg",
+          "https://static.cosmo.fans/admin/uploads/46fe3874-dd54-4398-9366-6506c1beb8b8.jpg",
+          "https://static.cosmo.fans/admin/uploads/196c9e6e-77b1-4bb4-9e98-8490bf1351c9.jpg",
+        ],
+      },
+      {
+        id: 295,
+        url: "https://www.youtube.com/@official_artms",
+        createdAt: "2023-09-06T08:58:04.407Z",
+        artist: "ARTMS",
+        logoImageUrl: "https://static.cosmo.fans/assets/artms-logo.png",
+        body: "ODD EYE CIRCLE's whereabouts",
+        imageUrls: [
+          "https://static.cosmo.fans/admin/uploads/66987575-ea19-4d1b-b0e6-d0adc7b9425c.jpg",
+          "https://static.cosmo.fans/admin/uploads/7e29b0e7-eaaf-4966-8791-e2065820df63.jpg",
+          "https://static.cosmo.fans/admin/uploads/a8e24b8d-320f-417e-850d-35b325ede8f5.jpg",
+          "https://static.cosmo.fans/admin/uploads/62bfd022-d4a0-4c3e-9850-20a181456fef.jpg",
+        ],
+      },
+      {
+        id: 238,
+        url: "",
+        createdAt: "2023-07-11T01:07:32.559Z",
+        artist: "ARTMS",
+        logoImageUrl: "https://static.cosmo.fans/assets/artms-logo.png",
+        body: "",
+        imageUrls: [
+          "https://static.cosmo.fans/images/sigma-prod/artms-20230712/feed-1.jpg",
+          "https://static.cosmo.fans/images/sigma-prod/artms-20230712/feed-2.jpg",
+          "https://static.cosmo.fans/images/sigma-prod/artms-20230712/feed-3.jpg",
+          "https://static.cosmo.fans/images/sigma-prod/artms-20230712/feed-4.jpg",
+        ],
+      },
+    ],
+  },
+
+  newsExclusive: {
+    hasNext: false,
+    total: 6,
+    results: [
+      {
+        id: 36,
+        url: "https://youtu.be/4uVqzLh1HiE",
+        createdAt: "2023-10-23T03:18:18.595Z",
+        title: "[Teaser] HeeJin 'Algorithm' (MV Ver.)",
+        body: "#ARTMS #HeeJin #희진 #K #Algorithm",
+        thumbnailImageUrl:
+          "https://static.cosmo.fans/admin/uploads/86763077-0431-41af-af8f-aae1676402e8.jpg",
+        nativeVideoUrl: "",
+      },
+      {
+        id: 35,
+        url: "https://youtu.be/Lv9O9gLrnzc",
+        createdAt: "2023-10-11T13:43:40.316Z",
+        title: "[Teaser] HeeJin 'Algorithm' (K Ver.)",
+        body: "#ARTMS #HeeJin #희진 #K #Algorithm",
+        thumbnailImageUrl:
+          "https://static.cosmo.fans/admin/uploads/557c2fde-38df-44d1-ba44-bdcbe7c70c67.jpeg",
+        nativeVideoUrl: null,
+      },
+      {
+        id: 31,
+        url: "https://static.cosmo.fans/pages/update-notice.html",
+        createdAt: "2023-10-03T04:00:00.000Z",
+        title: "OEC Europe Tour Selfcam Collection",
+        body: "Warning! Delicious food and hunger!",
+        thumbnailImageUrl:
+          "https://static.cosmo.fans/admin/uploads/b62980ea-e4c1-4b66-b8cd-1b36db3743bc.jpeg",
+        nativeVideoUrl:
+          "https://customer-odzj4xy9rztfqeuh.cloudflarestream.com/b5d789e48acfe04ff163b19872c32458/manifest/video.m3u8",
+      },
+      {
+        id: 5,
+        url: "https://youtu.be/UDxID0_A9x4",
+        createdAt: "2023-07-11T01:09:25.477Z",
+        title: "ODD EYE CIRCLE ‘Air Force One' MV | ARTMS",
+        body: "#KimLip #JinSoul #Choerry #Air Force One",
+        thumbnailImageUrl:
+          "https://static.cosmo.fans/uploads/assets/production/odd-eye-circle-mv-thumnail.jpg",
+        nativeVideoUrl: "",
+      },
+      {
+        id: 6,
+        url: "https://youtu.be/FKo0tjVeAEU",
+        createdAt: "2023-07-03T05:48:53.128Z",
+        title: "[Teaser] ODD EYE CIRCLE ‘Air Force One'",
+        body: "#KimLip #JinSoul #Choerry #VersionUp",
+        thumbnailImageUrl:
+          "https://static.cosmo.fans/images/sigma-prod/artms-20230704/youtube.jpg",
+        nativeVideoUrl: "",
+      },
+      {
+        id: 8,
+        url: "https://youtu.be/7aFU-Ick8go",
+        createdAt: "2023-06-17T01:10:36.157Z",
+        title: "ARTMS : The First Step",
+        body: "Welcome to Cosmo ARTMS! ",
+        thumbnailImageUrl:
+          "https://s3.ap-northeast-2.amazonaws.com/static.cosmo.fans/uploads/assets/development/31373e4c-c766-42ab-a2f0-531d205c4dd9.jpeg",
+        nativeVideoUrl: "",
+      },
+    ],
+  },
+
+  getSeason: {
+    seasons: [
+      {
+        artist: "artms",
+        title: "Atom01",
+        image: null,
+        startDate: "2023-06-18T00:00:00.000Z",
+        endDate: null,
+        ongoing: true,
+      },
+    ],
+    currentSeason: {
+      artist: "artms",
+      title: "Atom01",
+      image: null,
+      startDate: "2023-06-18T00:00:00.000Z",
+      endDate: null,
+      ongoing: true,
     },
   },
 };

@@ -1,2 +1,2 @@
 export { Cosmo } from "./cosmo";
-export * from "./api/types";
+export * from "./types";
