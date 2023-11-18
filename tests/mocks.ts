@@ -10,6 +10,13 @@ export const handlers = [
 
   // user
   http.get(cosmo("/user/v1/me"), () => HttpResponse.json(json.getUser)),
+  http.get(cosmo("/user/v1/search"), () => HttpResponse.json(json.search)),
+
+  // auth
+  http.post(cosmo("/auth/v1/signin"), () => HttpResponse.json(json.login)),
+  http.post(cosmo("/auth/v1/refresh"), () =>
+    HttpResponse.json(json.refreshToken)
+  ),
 ];
 
 // conditional handlers
@@ -131,6 +138,38 @@ export const json = {
           },
         },
       ],
+    },
+  },
+
+  search: {
+    hasNext: false,
+    results: [
+      {
+        nickname: "Kairu",
+        address: "0xcaB3C85ac8f4aE0153B7cF2Bbf1378397890848b",
+        profileImageUrl: "",
+      },
+    ],
+  },
+
+  login: {
+    user: {
+      id: 1,
+      email: "test@example.com",
+      nickname: "test",
+      address: "0xTest",
+      profileImageUrl: "",
+    },
+    credentials: {
+      accessToken: "accessToken",
+      refreshToken: "refreshToken",
+    },
+  },
+
+  refreshToken: {
+    credentials: {
+      accessToken: "accessToken",
+      refreshToken: "refreshToken",
     },
   },
 };

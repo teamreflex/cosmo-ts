@@ -18,3 +18,9 @@ test("fetches the user", async () => {
   const result = await cosmo.getUser();
   expect(result).toEqual(json.getUser.profile);
 });
+
+test("searches for users", async () => {
+  const cosmo = new Cosmo();
+  const result = await cosmo.searchUser("kairu");
+  expect(result).toEqual(json.search.results);
+});

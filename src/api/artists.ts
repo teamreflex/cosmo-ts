@@ -3,8 +3,9 @@ import { initUntypeable } from "untypeable";
 const u = initUntypeable().pushArg<"GET">();
 export const router = u.router({
   "/artist/v1": {
-    GET: u.output<{ artists: Artist }>(),
+    GET: u.output<{ artists: Artist[] }>(),
   },
+
   "/artist/v1/:artist": {
     GET: u.input<{ artist: string }>().output<{ artist: ArtistWithMembers }>(),
   },
