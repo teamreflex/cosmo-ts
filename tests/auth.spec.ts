@@ -1,19 +1,29 @@
-import { expect, test } from "vitest";
-import { Cosmo } from "../src";
+import { describe, it, expect, beforeEach } from "vitest";
+import { CosmoClient } from "../src/client";
 import { json } from "./mocks";
 
-test("logs the user in", async () => {
-  const cosmo = new Cosmo();
-  const result = await cosmo.login({
-    channel: "email",
-    email: "test@example.com",
-    accessToken: "accessToken",
-  });
-  expect(result).toEqual(json.login);
-});
+describe("AuthAPI", () => {
+  let cosmo: CosmoClient;
 
-test("refreshes a token", async () => {
-  const cosmo = new Cosmo();
-  const result = await cosmo.refreshToken({ refreshToken: "refreshToken" });
-  expect(result).toEqual(json.refreshToken);
+  beforeEach(() => {
+    cosmo = new CosmoClient({});
+  });
+
+  it("should sign in successfully", async () => {
+    const response = await cosmo.auth.signIn({
+      channel: "email",
+      email: "email@example.com",
+      accessToken: "ramperIdToken",
+    });
+
+    expect(response).toEqual(json.login);
+  });
+
+  it("should refresh the token successfully", async () => {
+    const response = await cosmo.auth.refreshToken({
+      refreshToken: "someRefeshToken",
+    });
+
+    expect(response).toEqual(json.refreshToken);
+  });
 });

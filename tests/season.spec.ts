@@ -1,9 +1,16 @@
-import { expect, test } from "vitest";
-import { Cosmo } from "../src";
+import { describe, it, expect, beforeEach } from "vitest";
+import { CosmoClient } from "../src/client";
 import { json } from "./mocks";
 
-test("fetches seasons", async () => {
-  const cosmo = new Cosmo();
-  const result = await cosmo.getSeasons("artms");
-  expect(result).toEqual(json.getSeason);
+describe("SeasonAPI", () => {
+  let cosmo: CosmoClient;
+
+  beforeEach(() => {
+    cosmo = new CosmoClient({});
+  });
+
+  it("should list seasons", async () => {
+    const response = await cosmo.seasons.list("ARTMS");
+    expect(response).toEqual(json.getSeasons);
+  });
 });

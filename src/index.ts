@@ -1,2 +1,1 @@
-export { Cosmo } from "./cosmo";
-export * from "./types";
+export { createClient } from "./client";

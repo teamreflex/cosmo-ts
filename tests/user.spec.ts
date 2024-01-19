@@ -1,26 +1,31 @@
-import { expect, test } from "vitest";
-import { Cosmo } from "../src";
-import { server } from "./setup";
+import { describe, it, expect, beforeEach } from "vitest";
+import { CosmoClient } from "../src/client";
 import { getUserUnauthorized, json } from "./mocks";
-import { CosmoUnauthenticatedError } from "../src/error";
+import { server } from "./setup";
+import { UnauthorizedError } from "../src/errors";
 
-test("unauthenticated client should error when fetching user", async () => {
-  server.use(getUserUnauthorized);
+describe("UserAPI", () => {
+  let cosmo: CosmoClient;
 
-  const cosmo = new Cosmo();
-  expect(() => cosmo.getUser()).rejects.toThrowError(
-    new CosmoUnauthenticatedError()
-  );
-});
+  beforeEach(() => {
+    cosmo = new CosmoClient({});
+  });
 
-test("fetches the user", async () => {
-  const cosmo = new Cosmo({ accessToken: "accessToken" });
-  const result = await cosmo.getUser();
-  expect(result).toEqual(json.getUser.profile);
-});
+  it("should get the currently authenticated user", async () => {
+    const response = await cosmo.users.me();
+    expect(response).toEqual(json.getUser.profile);
+  });
 
-test("searches for users", async () => {
-  const cosmo = new Cosmo();
-  const result = await cosmo.searchUser("kairu");
-  expect(result).toEqual(json.search.results);
+  it("should error when unauthenticated", async () => {
+    server.use(getUserUnauthorized);
+
+    expect(() => cosmo.users.me()).rejects.toThrowError(
+      new UnauthorizedError("missing Authorization header")
+    );
+  });
+
+  it("should search for users", async () => {
+    const response = await cosmo.users.search("example");
+    expect(response).toEqual(json.search);
+  });
 });

@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
 
-export const cosmo = (path: string) => `https://api.cosmo.fans${path}`;
+const cosmo = (path: string) => `https://api.cosmo.fans${path}`;
 
 // default handlers
 export const handlers = [
@@ -26,12 +26,32 @@ export const handlers = [
   ),
 
   // season
-  http.get(cosmo("/season/v2/*"), () => HttpResponse.json(json.getSeason)),
+  http.get(cosmo("/season/v2/*"), () => HttpResponse.json(json.getSeasons)),
 ];
 
 // conditional handlers
 export const getUserUnauthorized = http.get(cosmo("/user/v1/me"), () =>
-  HttpResponse.json({ error: "Unauthorized" }, { status: 401 })
+  HttpResponse.json(
+    {
+      error: {
+        message: "unauthorized",
+        details: "missing Authorization header",
+      },
+    },
+    { status: 401 }
+  )
+);
+export const getFeedNewsParams = http.get(
+  cosmo("/news/v1/feed"),
+  ({ request }) => {
+    const url = new URL(request.url);
+    const startAfter = url.searchParams.get("start_after");
+    const parsed = parseInt(startAfter ?? "0");
+    return HttpResponse.json({
+      ...json.newsFeed,
+      nextStartAfter: (parsed + 3).toString(),
+    });
+  }
 );
 
 export const json = {
@@ -131,23 +151,36 @@ export const json = {
 
   getUser: {
     profile: {
-      nickname: "test",
-      address: "0xtest",
+      id: 970613,
+      email: "email@example.com",
+      nickname: "Example",
+      address: "0xABCDEF",
+      birth: "1997-06-13",
       profileImageUrl: "",
-      artists: [
+      isEligibleForWelcomeObjekt: false,
+      followingArtists: [
         {
           name: "artms",
           title: "ARTMS",
+          logoImageUrl: "https://static.cosmo.fans/assets/artms-logo.png",
           contracts: {
-            Como: "0xComo",
-            Objekt: "0xObjekt",
+            Como: "0x8254D8D2903B20187cBC4Dd833d49cECc219F32E",
+            Objekt: "0x0fB69F54bA90f17578a59823E09e5a1f8F3FA200",
+            CommunityPool: "0x07F93cCc90aF32E4d6ea70A93F36DF9F58C97087",
+            ComoMinter: "0xBda6B6C34b27D54EAaAf555e458199467E77Bb18",
+            ObjektMinter: "0x9009e2b4fc02eb18e41994d235a78504600AC87c",
+            Governor: "0x8466e6E218F0fe438Ac8f403f684451D20E59Ee3",
           },
+          receivedWelcomeObjekt: true,
           assetBalance: {
-            totalComo: 1,
-            totalObjekt: 2,
+            totalComo: 123,
+            totalObjekt: 456,
           },
         },
       ],
+      lastViewedArtist: "artms",
+      marketingConsentDate: "2023-01-01T00:00:00.000Z",
+      createdAt: "2022-01-01T00:00:00.000Z",
     },
   },
 
@@ -155,8 +188,8 @@ export const json = {
     hasNext: false,
     results: [
       {
-        nickname: "Kairu",
-        address: "0xcaB3C85ac8f4aE0153B7cF2Bbf1378397890848b",
+        nickname: "Example",
+        address: "0xABCDEF",
         profileImageUrl: "",
       },
     ],
@@ -164,26 +197,111 @@ export const json = {
 
   login: {
     user: {
-      id: 1,
-      email: "test@example.com",
-      nickname: "test",
-      address: "0xTest",
+      id: 970613,
+      email: "email@example.com",
+      nickname: "example",
+      address: "0xABCDEF",
       profileImageUrl: "",
     },
     credentials: {
-      accessToken: "accessToken",
-      refreshToken: "refreshToken",
+      accessToken: "access-token",
+      refreshToken: "refresh-token",
     },
   },
 
   refreshToken: {
     credentials: {
-      accessToken: "accessToken",
-      refreshToken: "refreshToken",
+      refreshToken: "newRefreshToken",
+      accessToken: "newAccessToken",
     },
   },
 
-  newsHome: {},
+  newsHome: {
+    sections: [
+      {
+        artist: "ARTMS",
+        type: "bar",
+        contents: [],
+      },
+      {
+        artist: "ARTMS",
+        type: "banner",
+        contents: [
+          {
+            id: 80,
+            url: "https://twitter.com/official_artms/status/1740009651671015782",
+            createdAt: "2023-12-28T08:01:23.660Z",
+            label: "notice",
+            order: 1,
+            body: "OEC in US, Mexico, Japan!",
+            imageUrl:
+              "https://static.cosmo.fans/admin/uploads/01a3a715-3edc-4aac-b7a8-30e48e9bcd2e.jpg",
+          },
+          {
+            id: 61,
+            url: "https://www.melon.com/album/detail.htm?albumId=11376620",
+            createdAt: "2023-12-15T07:03:27.735Z",
+            label: "release",
+            order: 2,
+            body: "Stream 'The Carol 3.0' on Melon",
+            imageUrl:
+              "https://static.cosmo.fans/admin/uploads/e1285c2e-1000-49be-8351-c690fabf9156.png",
+          },
+          {
+            id: 60,
+            url: "https://open.spotify.com/track/4ggzfyKGny5dVjxPIgvQQO",
+            createdAt: "2023-12-15T06:58:35.875Z",
+            label: "release",
+            order: 1,
+            body: "Stream 'The Carol 3.0' on Spotify!",
+            imageUrl:
+              "https://static.cosmo.fans/admin/uploads/c26f640c-a033-42d0-b347-1bc73bfeaff8.png",
+          },
+        ],
+      },
+      {
+        artist: "ARTMS",
+        type: "feed",
+        title: "Today’s Atmosphere",
+        contents: [
+          {
+            id: 384,
+            url: "https://www.instagram.com/official_artms/",
+            createdAt: "2024-01-18T04:22:18.461Z",
+            artist: "ARTMS",
+            logoImageUrl: "https://static.cosmo.fans/assets/artms-logo.png",
+            body: "Choerry's Photo Diary (˵ •̀ ᴗ - ˵ ) ✧",
+            imageUrls: [
+              "https://static.cosmo.fans/admin/uploads/b803546e-1dd8-41a4-ab9b-e38708a1b125.png",
+            ],
+          },
+        ],
+      },
+      {
+        artist: "ARTMS",
+        type: "exclusive",
+        title: "COSMO Exclusive",
+        contents: [
+          {
+            id: 36,
+            url: "https://www.youtube.com/watch?v=l6p8FDJqUj4",
+            createdAt: "2023-10-23T03:18:18.595Z",
+            title: "HeeJin 'Algorithm' (MV Ver.)",
+            body: "#ARTMS #HeeJin #희진 #K #Algorithm",
+            thumbnailImageUrl:
+              "https://static.cosmo.fans/admin/uploads/86763077-0431-41af-af8f-aae1676402e8.jpg",
+            nativeVideoUrl: "",
+          },
+        ],
+      },
+      {
+        artist: "ARTMS",
+        type: "event",
+        title: "Event",
+        contents: [],
+      },
+    ],
+  },
 
   newsFeed: {
     hasNext: true,
@@ -303,7 +421,7 @@ export const json = {
     ],
   },
 
-  getSeason: {
+  getSeasons: {
     seasons: [
       {
         artist: "artms",

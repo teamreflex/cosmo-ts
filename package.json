@@ -2,22 +2,43 @@
   "name": "cosmo-ts",
   "version": "1.0.0",
   "description": "TypeScript library for interfacing with the Cosmo app API.",
-  "main": "index.js",
   "scripts": {
-    "dev": "tsup src/index.ts --watch --onSuccess 'node dist/index.js'",
-    "build": "tsup src/index.ts",
-    "test": "vitest"
+    "dev": "tsup --watch --clean=false",
+    "build": "tsup",
+    "test": "vitest",
+    "test:watch": "vitest watch"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "repository": "teamreflex/cosmo-ts",
   "devDependencies": {
-    "msw": "^2.0.8",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
-    "vitest": "^0.34.5"
+    "@types/node": "^20.11.5",
+    "msw": "^2.1.2",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.11",
+    "vitest": "^1.2.1"
   },
-  "dependencies": {
-    "untypeable": "^0.2.1"
-  }
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": {
+        "node": "./dist/index.js",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "node": "./dist/index.cjs",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ]
 }

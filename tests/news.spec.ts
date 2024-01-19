@@ -1,21 +1,36 @@
-import { expect, test } from "vitest";
-import { Cosmo } from "../src";
-import { json } from "./mocks";
+import { describe, it, expect, beforeEach } from "vitest";
+import { CosmoClient } from "../src/client";
+import { getFeedNewsParams, json } from "./mocks";
+import { server } from "./setup";
 
-test("fetches home page news", async () => {
-  const cosmo = new Cosmo();
-  const result = await cosmo.getHomeNews("artms");
-  expect(result).toEqual(json.newsHome);
-});
+describe("NewsAPI", () => {
+  let cosmo: CosmoClient;
 
-test("fetches atmosphere feed", async () => {
-  const cosmo = new Cosmo();
-  const result = await cosmo.getAtmosphereFeed("artms", { limit: 3 });
-  expect(result).toEqual(json.newsFeed);
-});
+  beforeEach(() => {
+    cosmo = new CosmoClient({});
+  });
 
-test("fetches exclusive feed", async () => {
-  const cosmo = new Cosmo();
-  const result = await cosmo.getExclusiveFeed("artms");
-  expect(result).toEqual(json.newsExclusive);
+  it("should list the home page news", async () => {
+    const response = await cosmo.news.home("ARTMS");
+    expect(response).toEqual(json.newsHome.sections);
+  });
+
+  it("should list the news feed", async () => {
+    const response = await cosmo.news.feed({ artist: "ARTMS" });
+    expect(response).toEqual(json.newsFeed);
+  });
+
+  it("should list the exclusive feed", async () => {
+    const response = await cosmo.news.exclusive({ artist: "ARTMS" });
+    expect(response).toEqual(json.newsExclusive);
+  });
+
+  it("should pass search params correctly", async () => {
+    server.use(getFeedNewsParams);
+    const response = await cosmo.news.feed({ artist: "ARTMS", startAfter: 3 });
+    expect(response).toEqual({
+      ...json.newsFeed,
+      nextStartAfter: "6",
+    });
+  });
 });

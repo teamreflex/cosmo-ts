@@ -1,11 +1,20 @@
-import { initUntypeable } from "untypeable";
+import { Config } from "../config";
+import { CosmoClient } from "../client";
+import { ValidArtist } from "./artist";
 
-const u = initUntypeable().pushArg<"GET">();
-export const router = u.router({
-  "/season/v2/:artist": {
-    GET: u.input<{ artist: string }>().output<SeasonResponse>(),
-  },
-});
+export class SeasonAPI {
+  constructor(private config: Config) {}
+
+  /**
+   * Get the seasons for the given artist.
+   */
+  async list(artist: ValidArtist): Promise<SeasonResponse> {
+    return await CosmoClient.request<SeasonResponse>(
+      `/season/v2/${artist}`,
+      this.config
+    );
+  }
+}
 
 export type OngoingSeason = {
   artist: string;
