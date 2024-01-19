@@ -1,6 +1,7 @@
 import { ArtistAPI } from "./apis/artist";
 import { AuthAPI } from "./apis/auth";
 import { NewsAPI } from "./apis/news";
+import { ObjektAPI } from "./apis/objekt";
 import { SeasonAPI } from "./apis/season";
 import { UserAPI } from "./apis/user";
 import { Config } from "./config";
@@ -18,6 +19,7 @@ export class CosmoClient {
   public seasons: SeasonAPI;
   public users: UserAPI;
   public news: NewsAPI;
+  public objekts: ObjektAPI;
 
   constructor(config: Config) {
     this.config = {
@@ -30,6 +32,7 @@ export class CosmoClient {
     this.seasons = new SeasonAPI(this.config);
     this.users = new UserAPI(this.config);
     this.news = new NewsAPI(this.config);
+    this.objekts = new ObjektAPI(this.config);
   }
 
   static async request<T>(
