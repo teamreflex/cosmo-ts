@@ -1,3 +1,4 @@
+import { AccessTokenMissing } from "../errors";
 import { Artist, ValidArtist } from "./artist";
 import { BaseAPI } from "./base-api";
 
@@ -8,6 +9,10 @@ export class UserAPI extends BaseAPI {
    * Authentication is required.
    */
   async me() {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
     return await this.request<{ profile: User.User }>(`/user/v1/me`).then(
       (res) => res.profile
     );
@@ -19,6 +24,10 @@ export class UserAPI extends BaseAPI {
    * Authentication is required.
    */
   async search(query: string) {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
     return await this.request<Search.SearchResponse>(
       `/user/v1/search?query=${query}`
     );

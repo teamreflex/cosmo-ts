@@ -29,6 +29,9 @@ export const handlers = [
   http.get(cosmo("/news/v1/exclusive"), () =>
     HttpResponse.json(json.newsExclusive)
   ),
+  http.get(cosmo("/bff/v1/news/feed"), () =>
+    HttpResponse.json(json.newsFeedBff)
+  ),
 
   // season
   http.get(cosmo("/season/v2/*"), () => HttpResponse.json(json.getSeasons)),
@@ -50,13 +53,22 @@ export const handlers = [
 ];
 
 // conditional handlers
-export const getUserUnauthorized = http.get(cosmo("/user/v1/me"), () =>
+export const unauthorizedHandler = http.get(cosmo("/*"), () =>
   HttpResponse.json(
     {
       error: {
         message: "unauthorized",
         details: "missing Authorization header",
       },
+    },
+    { status: 401 }
+  )
+);
+export const unauthorizedBffHandler = http.get(cosmo("/*"), () =>
+  HttpResponse.json(
+    {
+      code: "asdf",
+      message: "Sorry, your username or password was entered Incorrectly",
     },
     { status: 401 }
   )

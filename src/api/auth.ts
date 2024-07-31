@@ -1,4 +1,6 @@
+import { z } from "zod";
 import { BaseAPI } from "./base-api";
+import { signInSchema } from "../zod/auth";
 
 export class AuthAPI extends BaseAPI {
   /**
@@ -16,7 +18,7 @@ export class AuthAPI extends BaseAPI {
   /**
    * Refresh an access token.
    *
-   * Authentication is required.
+   * Authentication is not required.
    */
   async refreshToken(refreshToken: string) {
     return await this.request<Auth.RefreshResult>("/auth/v1/refresh", {
@@ -27,11 +29,7 @@ export class AuthAPI extends BaseAPI {
 }
 
 export namespace Auth {
-  export type LoginPayload = {
-    channel: "email";
-    email: string;
-    accessToken: string;
-  };
+  export type LoginPayload = z.infer<typeof signInSchema>;
 
   export type LoginResult = {
     user: {

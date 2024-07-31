@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { CosmoClient } from "../../src/client";
-import { getUserUnauthorized } from "../mocks";
+import { unauthorizedHandler } from "../mocks";
 import { server } from "../setup";
-import { UnauthorizedError } from "../../src/errors";
+import { AccessTokenMissing, UnauthorizedError } from "../../src/errors";
 import json from "../mocks.json";
 
 describe("UserAPI", () => {
@@ -12,22 +12,53 @@ describe("UserAPI", () => {
     cosmo = new CosmoClient({});
   });
 
-  it("should get the currently authenticated user", async () => {
-    const response = await cosmo.users.me();
-    expect(response).toEqual(json.getUser.profile);
+  describe("authenticated", () => {
+    beforeEach(() => {
+      cosmo.setAccessToken("someAccessToken");
+    });
+
+    it("should get the currently authenticated user", async () => {
+      const response = await cosmo.users.me();
+      expect(response).toEqual(json.getUser.profile);
+    });
+
+    it("should search for users", async () => {
+      const response = await cosmo.users.search("example");
+      expect(response).toEqual(json.search);
+    });
   });
 
-  it("should error when unauthenticated", async () => {
-    server.use(getUserUnauthorized);
+  describe("unauthenticated", () => {
+    it("getting the current user should throw an error", async () => {
+      await expect(cosmo.users.me()).rejects.toThrowError(
+        new AccessTokenMissing()
+      );
+    });
 
-    expect(() => cosmo.users.me()).rejects.toThrowError(
-      new UnauthorizedError("missing Authorization header")
-    );
+    it("user search should throw an error", async () => {
+      expect(() => cosmo.users.search("example")).rejects.toThrowError(
+        new AccessTokenMissing()
+      );
+    });
   });
 
-  it("should search for users", async () => {
-    const response = await cosmo.users.search("example");
-    expect(response).toEqual(json.search);
+  describe("invalid token", () => {
+    beforeEach(() => {
+      cosmo.setAccessToken("someInvalidAccessToken");
+      server.use(unauthorizedHandler);
+    });
+
+    it("getting the current user should handle unauthorized requests", async () => {
+      expect(() => cosmo.users.me()).rejects.toThrowError(
+        new UnauthorizedError("missing Authorization header")
+      );
+    });
+
+    it("user search should handle unauthorized requests", async () => {
+      expect(() => cosmo.users.search("example")).rejects.toThrowError(
+        new UnauthorizedError("missing Authorization header")
+      );
+    });
   });
 
   it("should get a user by their nickname", async () => {

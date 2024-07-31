@@ -1,5 +1,9 @@
-import { ValidArtist } from "./artist";
+import { z } from "zod";
+import { Artist, ValidArtist } from "./artist";
 import { BaseAPI } from "./base-api";
+import { bffNewsFeedSchema, newsFeedSchema } from "../zod/news";
+import { AccessTokenMissing } from "../errors";
+import { randomUUID } from "crypto";
 
 export class NewsAPI extends BaseAPI {
   /**
@@ -8,7 +12,11 @@ export class NewsAPI extends BaseAPI {
    * Authentication is required.
    */
   async home(artist: ValidArtist) {
-    return await this.request<{ sections: News.NewsSection[] }>(
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
+    return await this.request<{ sections: News.Section[] }>(
       `/news/v1?artist=${artist}`
     ).then((res) => res.sections);
   }
@@ -18,20 +26,14 @@ export class NewsAPI extends BaseAPI {
    *
    * Authentication is not required.
    */
-  async feed({ artist, startAfter, limit }: News.NewsPayload) {
+  async feed({ artist, startAfter = 0, limit = 10 }: News.Payload) {
     const params = new URLSearchParams({
       artist: artist,
+      start_after: startAfter.toString(),
+      limit: limit.toString(),
     });
 
-    if (startAfter) {
-      params.append("start_after", startAfter.toString());
-    }
-
-    if (limit) {
-      params.append("limit", limit.toString());
-    }
-
-    return await this.request<News.NewsFeedResult<News.NewsSectionFeedContent>>(
+    return await this.request<News.FeedResult<News.SectionFeedContent>>(
       `/news/v1/feed?${params.toString()}`
     );
   }
@@ -41,44 +43,56 @@ export class NewsAPI extends BaseAPI {
    *
    * Authentication is not required.
    */
-  async exclusive({ artist, startAfter, limit }: News.NewsPayload) {
+  async exclusive({ artist, startAfter = 0, limit = 10 }: News.Payload) {
     const params = new URLSearchParams({
-      artist: artist,
+      artist,
+      start_after: startAfter.toString(),
+      limit: limit.toString(),
     });
 
-    if (startAfter) {
-      params.append("start_after", startAfter.toString());
+    return await this.request<News.FeedResult<News.SectionExclusiveContent>>(
+      `/news/v1/exclusive?${params.toString()}`
+    );
+  }
+
+  /**
+   * Get the news feed for the given artist via the backend for frontend endpoint.
+   *
+   * Authentication is required.
+   */
+  async feedBff({ artistName, page = 1, size = 10 }: NewsBFF.Payload) {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
     }
 
-    if (limit) {
-      params.append("limit", limit.toString());
-    }
+    const params = new URLSearchParams({
+      artistName: artistName,
+      tid: randomUUID(),
+      page: page.toString(),
+      size: size.toString(),
+    });
 
-    return await this.request<
-      News.NewsFeedResult<News.NewsSectionExclusiveContent>
-    >(`/news/v1/exclusive?${params.toString()}`);
+    return await this.request<NewsBFF.FeedResult<NewsBFF.FeedItem>>(
+      `/bff/v1/news/feed?${params.toString()}`
+    );
   }
 }
 
 export namespace News {
-  export type NewsPayload = {
-    artist: ValidArtist;
-    startAfter?: number;
-    limit?: number;
-  };
+  export type Payload = z.infer<typeof newsFeedSchema>;
 
-  export type NewsSectionBar = {
+  export type SectionBar = {
     type: "bar";
     artist: ValidArtist;
     contents: [];
   };
 
-  export type NewsSectionBanner = {
+  export type SectionBanner = {
     type: "banner";
     artist: ValidArtist;
-    contents: NewsSectionBannerContent[];
+    contents: SectionBannerContent[];
   };
-  export type NewsSectionBannerContent = {
+  export type SectionBannerContent = {
     id: number;
     url: string;
     createdAt: string;
@@ -88,13 +102,13 @@ export namespace News {
     imageUrl: string;
   };
 
-  export type NewsSectionFeed = {
+  export type SectionFeed = {
     type: "feed";
     artist: ValidArtist;
     title: string;
-    contents: NewsSectionFeedContent[];
+    contents: SectionFeedContent[];
   };
-  export type NewsSectionFeedContent = {
+  export type SectionFeedContent = {
     id: number;
     url: string;
     createdAt: string;
@@ -104,13 +118,13 @@ export namespace News {
     imageUrls: string[];
   };
 
-  export type NewsSectionExclusive = {
+  export type SectionExclusive = {
     type: "exclusive";
     artist: ValidArtist;
     title: string;
-    contents: NewsSectionExclusiveContent[];
+    contents: SectionExclusiveContent[];
   };
-  export type NewsSectionExclusiveContent = {
+  export type SectionExclusiveContent = {
     id: number;
     url: string;
     createdAt: string;
@@ -120,16 +134,47 @@ export namespace News {
     nativeVideoUrl: string;
   };
 
-  export type NewsSection =
-    | NewsSectionBar
-    | NewsSectionBanner
-    | NewsSectionFeed
-    | NewsSectionExclusive;
+  export type Section =
+    | SectionBar
+    | SectionBanner
+    | SectionFeed
+    | SectionExclusive;
 
-  export type NewsFeedResult<TPostType> = {
+  export type FeedResult<TPostType> = {
     hasNext: boolean;
     total: number;
     nextStartAfter: string;
     results: TPostType[];
+  };
+}
+
+export namespace NewsBFF {
+  export type Payload = z.infer<typeof bffNewsFeedSchema>;
+
+  export type FeedResult<TPostType> = {
+    count: number;
+    sets: TPostType[];
+  };
+
+  type FeedItemImage = {
+    thumbnail: string;
+    original: string;
+  };
+
+  export type FeedItem = {
+    data: {
+      activeAt: string;
+      updatedAt: string;
+      createdAt: string;
+      artistMembers: unknown[];
+      artist: string;
+      body: string;
+      id: number;
+      totalLikeCount: number;
+      url: string;
+    };
+    artist: Artist.Artist;
+    images: FeedItemImage[];
+    isLiked: boolean;
   };
 }

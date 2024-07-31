@@ -28,6 +28,23 @@ export class CosmoClient {
     this.news = new NewsAPI(this.config);
     this.objekts = new ObjektAPI(this.config);
   }
+
+  /**
+   * Merge a new config object into the existing one.
+   */
+  setConfig(config: Config) {
+    this.config = {
+      ...this.config,
+      ...config,
+    };
+  }
+
+  /**
+   * Set the access token for the client.
+   */
+  setAccessToken(accessToken: string | undefined) {
+    this.config.accessToken = accessToken;
+  }
 }
 
 export function createClient(config: Config): CosmoClient {

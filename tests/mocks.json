@@ -5,6 +5,7 @@
         "name": "tripleS",
         "title": "tripleS",
         "logoImageUrl": "https://static.cosmo.fans/assets/triples-logo.png",
+        "fandomName": "WAV",
         "contracts": {
           "Como": "0x58AeABfE2D9780c1bFcB713Bf5598261b15dB6e5",
           "Objekt": "0xA4B37bE40F7b231Ee9574c4b16b7DDb7EAcDC99B",
@@ -17,6 +18,7 @@
       {
         "name": "artms",
         "title": "ARTMS",
+        "fandomName": "OURII",
         "logoImageUrl": "https://static.cosmo.fans/assets/artms-logo.png",
         "contracts": {
           "Como": "0x8254D8D2903B20187cBC4Dd833d49cECc219F32E",
@@ -34,6 +36,7 @@
     "artist": {
       "name": "artms",
       "title": "ARTMS",
+      "fandomName": "OURII",
       "logoImageUrl": "https://static.cosmo.fans/assets/artms-logo.png",
       "contracts": {
         "Como": "0x8254D8D2903B20187cBC4Dd833d49cECc219F32E",
@@ -108,7 +111,7 @@
       "Governor": "0x8466e6E218F0fe438Ac8f403f684451D20E59Ee3"
     },
     "createdAt": "2023-06-16T16:09:58.818Z",
-    "createdBy": "hyojun@mod-haus.com",
+    "createdBy": "email@example.com",
     "updatedAt": "2024-06-20T08:49:30.703Z",
     "activeAt": "2023-06-17T05:53:17.000Z",
     "order": 2
@@ -380,6 +383,132 @@
         "body": "Welcome to Cosmo ARTMS! ",
         "thumbnailImageUrl": "https://s3.ap-northeast-2.amazonaws.com/static.cosmo.fans/uploads/assets/development/31373e4c-c766-42ab-a2f0-531d205c4dd9.jpeg",
         "nativeVideoUrl": ""
+      }
+    ]
+  },
+
+  "newsFeedBff": {
+    "count": 123,
+    "sets": [
+      {
+        "data": {
+          "activeAt": "2024-07-30T11:00:57.000Z",
+          "updatedAt": "2024-07-31T08:01:29.000Z",
+          "createdAt": "2024-07-30T08:37:33.717Z",
+          "artistMembers": [],
+          "artist": "artms",
+          "body": "HaSeul's Photo Diary(*ˊᵕˋ*)ﾉ♡︎",
+          "id": 628,
+          "totalLikeCount": 103,
+          "url": ""
+        },
+        "artist": {
+          "name": "artms",
+          "title": "ARTMS",
+          "fandomName": "OURII",
+          "logoImageUrl": "https://static.cosmo.fans/assets/artms-logo.png",
+          "primaryImageUrl": "https://s3.ap-northeast-2.amazonaws.com/resources.cosmo.fans/artist/ARTMS.jpg",
+          "contracts": {
+            "Como": "0x8254D8D2903B20187cBC4Dd833d49cECc219F32E",
+            "Objekt": "0x0fB69F54bA90f17578a59823E09e5a1f8F3FA200",
+            "CommunityPool": "0x07F93cCc90aF32E4d6ea70A93F36DF9F58C97087",
+            "ComoMinter": "0x9640531cA96691b7F38e88fA17badAD90534d2A5",
+            "ObjektMinter": "0x9009e2b4fc02eb18e41994d235a78504600AC87c",
+            "Governor": "0x8466e6E218F0fe438Ac8f403f684451D20E59Ee3"
+          },
+          "createdAt": "2023-06-16T16:09:58.818Z",
+          "createdBy": "email@example.com",
+          "updatedAt": "2024-06-20T08:49:30.703Z",
+          "activeAt": "2023-06-17T05:53:17.000Z",
+          "order": 2
+        },
+        "images": [
+          {
+            "thumbnail": "https://resources.cosmo.fans/images/cosmo-backend/2024/07/30/08/1280/6b8e337cbcca4aacb5335aa8af5f14ab20240730083732282.jpeg",
+            "original": "https://resources.cosmo.fans/images/cosmo-backend/2024/07/30/08/raw/58902d1f06a448a196aa4a1fde2a9fdc20240730083732280"
+          }
+        ],
+        "isLiked": false
+      },
+      {
+        "data": {
+          "activeAt": "2024-07-27T11:00:37.000Z",
+          "updatedAt": "2024-07-31T08:13:24.000Z",
+          "createdAt": "2024-07-26T07:44:06.562Z",
+          "artistMembers": [],
+          "artist": "artms",
+          "body": "HeeJin's Photo Diary 📖✏️",
+          "id": 624,
+          "totalLikeCount": 169,
+          "url": ""
+        },
+        "artist": {
+          "name": "artms",
+          "title": "ARTMS",
+          "fandomName": "OURII",
+          "logoImageUrl": "https://static.cosmo.fans/assets/artms-logo.png",
+          "primaryImageUrl": "https://s3.ap-northeast-2.amazonaws.com/resources.cosmo.fans/artist/ARTMS.jpg",
+          "contracts": {
+            "Como": "0x8254D8D2903B20187cBC4Dd833d49cECc219F32E",
+            "Objekt": "0x0fB69F54bA90f17578a59823E09e5a1f8F3FA200",
+            "CommunityPool": "0x07F93cCc90aF32E4d6ea70A93F36DF9F58C97087",
+            "ComoMinter": "0x9640531cA96691b7F38e88fA17badAD90534d2A5",
+            "ObjektMinter": "0x9009e2b4fc02eb18e41994d235a78504600AC87c",
+            "Governor": "0x8466e6E218F0fe438Ac8f403f684451D20E59Ee3"
+          },
+          "createdAt": "2023-06-16T16:09:58.818Z",
+          "createdBy": "email@example.com",
+          "updatedAt": "2024-06-20T08:49:30.703Z",
+          "activeAt": "2023-06-17T05:53:17.000Z",
+          "order": 2
+        },
+        "images": [
+          {
+            "thumbnail": "https://resources.cosmo.fans/images/cosmo-backend/2024/07/26/07/1280/d0e5b6734de14355bf41a0bc7fa20ad920240726074404759.jpeg",
+            "original": "https://resources.cosmo.fans/images/cosmo-backend/2024/07/26/07/raw/473086993e50418ab1a1c3c8765f6d6620240726074404662"
+          }
+        ],
+        "isLiked": false
+      },
+      {
+        "data": {
+          "activeAt": "2024-07-25T11:01:00.000Z",
+          "updatedAt": "2024-07-31T06:53:36.000Z",
+          "createdAt": "2024-07-25T09:11:38.569Z",
+          "artistMembers": [],
+          "artist": "artms",
+          "body": "Choerry's Photo Diary ꒰ ྀི*•₃•* ྀི꒱♡⁼³₌₃",
+          "id": 622,
+          "totalLikeCount": 187,
+          "url": ""
+        },
+        "artist": {
+          "name": "artms",
+          "title": "ARTMS",
+          "fandomName": "OURII",
+          "logoImageUrl": "https://static.cosmo.fans/assets/artms-logo.png",
+          "primaryImageUrl": "https://s3.ap-northeast-2.amazonaws.com/resources.cosmo.fans/artist/ARTMS.jpg",
+          "contracts": {
+            "Como": "0x8254D8D2903B20187cBC4Dd833d49cECc219F32E",
+            "Objekt": "0x0fB69F54bA90f17578a59823E09e5a1f8F3FA200",
+            "CommunityPool": "0x07F93cCc90aF32E4d6ea70A93F36DF9F58C97087",
+            "ComoMinter": "0x9640531cA96691b7F38e88fA17badAD90534d2A5",
+            "ObjektMinter": "0x9009e2b4fc02eb18e41994d235a78504600AC87c",
+            "Governor": "0x8466e6E218F0fe438Ac8f403f684451D20E59Ee3"
+          },
+          "createdAt": "2023-06-16T16:09:58.818Z",
+          "createdBy": "email@example.com",
+          "updatedAt": "2024-06-20T08:49:30.703Z",
+          "activeAt": "2023-06-17T05:53:17.000Z",
+          "order": 2
+        },
+        "images": [
+          {
+            "thumbnail": "https://resources.cosmo.fans/images/cosmo-backend/2024/07/25/09/1280/64fbfbade2c647388ca7bb0d5bec81a320240725091137024.jpeg",
+            "original": "https://resources.cosmo.fans/images/cosmo-backend/2024/07/25/09/raw/fbe3b7e61c4b48358d0430678048668820240725091137020"
+          }
+        ],
+        "isLiked": false
       }
     ]
   },

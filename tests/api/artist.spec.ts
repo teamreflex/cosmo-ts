@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { CosmoClient } from "../../src/client";
 import json from "../mocks.json";
+import { AccessTokenMissing } from "../../src/errors";
 
 describe("ArtistAPI", () => {
   let cosmo: CosmoClient;
@@ -19,8 +20,17 @@ describe("ArtistAPI", () => {
     expect(response).toEqual(json.getArtist.artist);
   });
 
-  it("should return a single artist from the bbf endpoint", async () => {
-    const response = await cosmo.artists.bffGet("ARTMS");
-    expect(response).toEqual(json.getArtistBff);
+  describe("backend for frontend", () => {
+    it("should return a single artist when authenticated", async () => {
+      cosmo.setAccessToken("someAccessToken");
+      const response = await cosmo.artists.bffGet("ARTMS");
+      expect(response).toEqual(json.getArtistBff);
+    });
+
+    it("should throw an error when unauthenticated", async () => {
+      await expect(cosmo.artists.bffGet("ARTMS")).rejects.toThrowError(
+        new AccessTokenMissing()
+      );
+    });
   });
 });

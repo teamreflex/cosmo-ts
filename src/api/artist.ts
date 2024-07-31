@@ -1,5 +1,6 @@
 import { randomUUID } from "crypto";
 import { BaseAPI } from "./base-api";
+import { AccessTokenMissing } from "../errors";
 
 export class ArtistAPI extends BaseAPI {
   /**
@@ -36,6 +37,10 @@ export class ArtistAPI extends BaseAPI {
    * Authentication is required.
    */
   async bffGet(artist: ValidArtist) {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
     const params = new URLSearchParams({
       artistName: artist,
       tid: randomUUID(),
@@ -52,7 +57,8 @@ export class ArtistAPI extends BaseAPI {
  *
  * `(string & {})` allows any string through while giving typesafety on known artists.
  */
-export type ValidArtist = "tripleS" | "ARTMS" | (string & {});
+export const validArtists = ["tripleS", "ARTMS"] as const;
+export type ValidArtist = (typeof validArtists)[number] | (string & {});
 
 export namespace Artist {
   export type Artist = {

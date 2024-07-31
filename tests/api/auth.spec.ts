@@ -21,7 +21,6 @@ describe("AuthAPI", () => {
 
   it("should refresh the token successfully", async () => {
     const response = await cosmo.auth.refreshToken("someRefeshToken");
-
     expect(response).toEqual(json.refreshToken);
   });
 });

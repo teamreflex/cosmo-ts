@@ -35,3 +35,9 @@ export class NotFoundError extends CosmoError {
     super(404, message ?? "not found");
   }
 }
+
+export class AccessTokenMissing extends CosmoError {
+  constructor() {
+    super(401, "A valid access token is required for this endpoint.");
+  }
+}

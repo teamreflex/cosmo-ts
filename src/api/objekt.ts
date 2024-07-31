@@ -1,4 +1,7 @@
+import { z } from "zod";
 import { BaseAPI } from "./base-api";
+import { objektFilterSchema } from "../zod/objekt";
+import { AccessTokenMissing } from "../errors";
 
 export class ObjektAPI extends BaseAPI {
   /**
@@ -7,6 +10,10 @@ export class ObjektAPI extends BaseAPI {
    * Authentication is required.
    */
   async filters() {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
     return await this.request<{
       sorts: Filters.Sort[];
       filters: Filters.Filter[];
@@ -19,6 +26,10 @@ export class ObjektAPI extends BaseAPI {
    * Authentication is required.
    */
   async getBySerial(serial: string) {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
     return await this.request<{
       objekt: Objekt.Objekt;
       isClaimed: boolean;
@@ -31,6 +42,10 @@ export class ObjektAPI extends BaseAPI {
    * Authentication is required.
    */
   async claimBySerial(serial: string) {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
     throw new Error("not implemented");
     return await this.request<boolean>(`/objekt/v1/by-serial/${serial}/claim`, {
       method: "POST",
@@ -42,9 +57,20 @@ export class ObjektAPI extends BaseAPI {
    *
    * Authentication is not required.
    */
-  async ownedBy(address: Objekt.OwnedBy) {
+  async ownedBy(address: Objekt.OwnedBy, filters?: Objekt.CollectionParams) {
     throw new Error("not implemented");
-    return await this.request(`/objekt/v1/owned-by/${address}`);
+    const params = toSearchParams(
+      filters ?? {
+        sort: "newest",
+        season: [],
+        class: [],
+        on_offline: [],
+      }
+    );
+
+    return await this.request(
+      `/objekt/v1/owned-by/${address}?${params.toString()}`
+    );
   }
 
   /**
@@ -62,6 +88,10 @@ export class ObjektAPI extends BaseAPI {
    * Authentication is required.
    */
   async applyLenticular(tokenA: Objekt.TokenId, tokenB: Objekt.TokenId) {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
     throw new Error("not implemented");
     return await this.request<boolean>(`/lenticular/v1`, {
       method: "POST",
@@ -78,11 +108,51 @@ export class ObjektAPI extends BaseAPI {
    * Authentication is required.
    */
   async removeLenticular(tokenId: Objekt.TokenId) {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
     throw new Error("not implemented");
     return await this.request<boolean>(`/lenticular/v1/${tokenId}`, {
       method: "DELETE",
     });
   }
+}
+
+/**
+ * Converts a parsed query string into a Cosmo-compatible URLSearchParams.
+ */
+function toSearchParams(input: Objekt.CollectionParams): URLSearchParams {
+  const query = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(input)) {
+    // filter out empty values
+    if (
+      value === null ||
+      value === "" ||
+      (Array.isArray(value) && value.length === 0)
+    ) {
+      continue;
+    }
+
+    switch (typeof value) {
+      case "string":
+        query.set(key, value);
+        break;
+      case "boolean":
+        if (value) {
+          query.set(key, "true");
+        }
+        break;
+      case "object":
+        if (Array.isArray(value)) {
+          query.set(key, value.join(","));
+        }
+        break;
+    }
+  }
+
+  return query;
 }
 
 export namespace Filters {
@@ -171,4 +241,6 @@ export namespace Objekt {
     trait_type: string;
     value: string;
   };
+
+  export type CollectionParams = z.infer<typeof objektFilterSchema>;
 }

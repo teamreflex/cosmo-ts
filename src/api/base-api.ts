@@ -9,7 +9,7 @@ import {
 } from "../errors";
 
 export class BaseAPI {
-  constructor(private config: Config) {}
+  constructor(protected config: Config) {}
 
   /**
    * Make a request to the API.
