@@ -19,11 +19,18 @@ export class CosmoError extends Error {
   }
 }
 
+export class BadRequestError extends CosmoError {
+  constructor(message?: string) {
+    super(404, message ?? "bad request");
+  }
+}
+
 export class UnauthorizedError extends CosmoError {
   constructor(message?: string) {
     super(401, message ?? "unauthorized");
   }
 }
+
 export class TokenExpiredError extends CosmoError {
   constructor(message?: string) {
     super(403, message ?? "token expired");

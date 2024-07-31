@@ -2,6 +2,7 @@ import { ArtistAPI } from "./api/artist";
 import { AuthAPI } from "./api/auth";
 import { NewsAPI } from "./api/news";
 import { ObjektAPI } from "./api/objekt";
+import { RewardsAPI } from "./api/rewards";
 import { SeasonAPI } from "./api/season";
 import { UserAPI } from "./api/user";
 import { Config } from "./config";
@@ -14,6 +15,7 @@ export class CosmoClient {
   public users: UserAPI;
   public news: NewsAPI;
   public objekts: ObjektAPI;
+  public rewards: RewardsAPI;
 
   constructor(config: Config) {
     this.config = {
@@ -27,6 +29,7 @@ export class CosmoClient {
     this.users = new UserAPI(this.config);
     this.news = new NewsAPI(this.config);
     this.objekts = new ObjektAPI(this.config);
+    this.rewards = new RewardsAPI(this.config);
   }
 
   /**

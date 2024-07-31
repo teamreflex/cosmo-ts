@@ -50,10 +50,21 @@ export const handlers = [
     HttpResponse.json(json.claimBySerial)
   ),
   http.get(cosmo("/objekt/v1/token/*"), () => HttpResponse.json(json.token)),
+
+  // rewards
+  http.get(cosmo("/bff/v1/event-rewards"), () =>
+    HttpResponse.json(json.rewardsList)
+  ),
+  http.get(cosmo("/bff/v1/check-event-rewards"), () =>
+    HttpResponse.json(json.rewardsCheck)
+  ),
+  http.post(cosmo("/bff/v1/event-rewards"), () =>
+    HttpResponse.json(undefined, { status: 204 })
+  ),
 ];
 
 // conditional handlers
-export const unauthorizedHandler = http.get(cosmo("/*"), () =>
+export const unauthorizedHandler = http.all(cosmo("/*"), () =>
   HttpResponse.json(
     {
       error: {
@@ -64,7 +75,7 @@ export const unauthorizedHandler = http.get(cosmo("/*"), () =>
     { status: 401 }
   )
 );
-export const unauthorizedBffHandler = http.get(cosmo("/*"), () =>
+export const unauthorizedBffHandler = http.all(cosmo("/*"), () =>
   HttpResponse.json(
     {
       code: "asdf",

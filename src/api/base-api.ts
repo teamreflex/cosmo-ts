@@ -1,5 +1,6 @@
 import { Config } from "../config";
 import {
+  BadRequestError,
   CosmoBFFErrorResponse,
   CosmoError,
   CosmoErrorResponse,
@@ -34,6 +35,8 @@ export class BaseAPI {
           const body: CosmoBFFErrorResponse = await response.json();
 
           switch (response.status) {
+            case 400:
+              throw new BadRequestError(body.message);
             case 401:
               throw new UnauthorizedError(body.message);
             case 403:
@@ -60,6 +63,11 @@ export class BaseAPI {
 
         throw new CosmoError(response.status, "unknown error");
       }
+    }
+
+    // probably shouldn't do this
+    if (response.status === 204) {
+      return true as T;
     }
 
     return response.json() as T;

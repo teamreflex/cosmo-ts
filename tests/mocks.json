@@ -936,5 +936,24 @@
     "estimatedBaseFee": 191.247951993,
     "blockTime": 2,
     "blockNumber": 52509975
+  },
+
+  "rewardsList": {
+    "count": 1,
+    "items": [
+      {
+        "id": 1,
+        "isClaimed": false,
+        "thumbnailImage": "thumbnailImage",
+        "title": "Atom01 JinSoul 310Z #5",
+        "category": "Event",
+        "endedAt": "2023-12-28T08:01:23.660Z"
+      }
+    ],
+    "claimCount": 0
+  },
+
+  "rewardsCheck": {
+    "isClaimable": true
   }
 }
