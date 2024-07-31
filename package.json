@@ -1,7 +1,7 @@
 {
-  "name": "cosmo-ts",
-  "version": "1.0.0",
-  "description": "TypeScript library for interfacing with the Cosmo app API.",
+  "name": "@teamreflex/cosmo-ts",
+  "version": "0.0.1",
+  "description": "Unofficial TypeScript library for interfacing with the COSMO app API.",
   "scripts": {
     "dev": "tsup --watch --clean=false",
     "build": "tsup",
@@ -47,6 +47,9 @@
         "default": "./dist/index.cjs"
       }
     }
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist",
