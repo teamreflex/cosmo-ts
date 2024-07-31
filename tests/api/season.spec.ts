@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { CosmoClient } from "../src/client";
-import { json } from "./mocks";
+import { CosmoClient } from "../../src/client";
+import json from "../mocks.json";
 
 describe("SeasonAPI", () => {
   let cosmo: CosmoClient;

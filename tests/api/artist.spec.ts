@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { CosmoClient } from "../src/client";
-import { json } from "./mocks";
+import { CosmoClient } from "../../src/client";
+import json from "../mocks.json";
 
 describe("ArtistAPI", () => {
   let cosmo: CosmoClient;
@@ -17,5 +17,10 @@ describe("ArtistAPI", () => {
   it("should return a single artist with its members", async () => {
     const response = await cosmo.artists.get("ARTMS");
     expect(response).toEqual(json.getArtist.artist);
+  });
+
+  it("should return a single artist from the bbf endpoint", async () => {
+    const response = await cosmo.artists.bffGet("ARTMS");
+    expect(response).toEqual(json.getArtistBff);
   });
 });

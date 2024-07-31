@@ -8,4 +8,9 @@ export type Config = {
    * Some endpoints are public, but it's recommended to provide a token.
    */
   accessToken?: string;
+
+  /**
+   * Sets a custom user agent.
+   */
+  userAgent?: string;
 };

@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { CosmoClient } from "../src/client";
-import { getFeedNewsParams, json } from "./mocks";
-import { server } from "./setup";
+import { CosmoClient } from "../../src/client";
+import { getFeedNewsParams } from "../mocks";
+import { server } from "../setup";
+import json from "../mocks.json";
 
 describe("NewsAPI", () => {
   let cosmo: CosmoClient;

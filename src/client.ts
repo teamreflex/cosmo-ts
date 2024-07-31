@@ -1,16 +1,10 @@
-import { ArtistAPI } from "./apis/artist";
-import { AuthAPI } from "./apis/auth";
-import { NewsAPI } from "./apis/news";
-import { ObjektAPI } from "./apis/objekt";
-import { SeasonAPI } from "./apis/season";
-import { UserAPI } from "./apis/user";
+import { ArtistAPI } from "./api/artist";
+import { AuthAPI } from "./api/auth";
+import { NewsAPI } from "./api/news";
+import { ObjektAPI } from "./api/objekt";
+import { SeasonAPI } from "./api/season";
+import { UserAPI } from "./api/user";
 import { Config } from "./config";
-import {
-  CosmoError,
-  CosmoErrorResponse,
-  TokenExpiredError,
-  UnauthorizedError,
-} from "./errors";
 
 export class CosmoClient {
   private config: Config;
@@ -33,41 +27,6 @@ export class CosmoClient {
     this.users = new UserAPI(this.config);
     this.news = new NewsAPI(this.config);
     this.objekts = new ObjektAPI(this.config);
-  }
-
-  static async request<T>(
-    url: string,
-    config: Config,
-    options: RequestInit = {}
-  ) {
-    const response = await fetch(new URL(url, config.baseUrl), {
-      ...options,
-      headers: {
-        ...options.headers,
-        ...(config.accessToken
-          ? { Authorization: `Bearer ${config.accessToken}` }
-          : {}),
-      },
-    });
-
-    if (response.ok === false) {
-      try {
-        const body: CosmoErrorResponse = await response.json();
-        switch (response.status) {
-          case 401:
-            throw new UnauthorizedError(body.error.details);
-          case 403:
-            throw new TokenExpiredError(body.error.details);
-        }
-      } catch (err) {
-        if (err instanceof CosmoError) {
-          throw err;
-        }
-        throw new CosmoError(`status: ${response.status}, error: ${err}`);
-      }
-    }
-
-    return response.json() as T;
   }
 }
 
