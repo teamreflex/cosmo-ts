@@ -1,1 +1,14 @@
-export { createClient } from "./client";
+export { createClient, CosmoClient } from "./client";
+export { validArtists, ValidArtist, Artist } from "./api/artist";
+export { Auth } from "./api/auth";
+export { Grid } from "./api/grid";
+export { News, NewsBFF } from "./api/news";
+export { Filters, Objekt } from "./api/objekt";
+export { Rewards } from "./api/rewards";
+export { Season } from "./api/season";
+export { User, Search } from "./api/user";
+export * from "./errors";
+export * from "./zod/artist";
+export * from "./zod/auth";
+export * from "./zod/news";
+export * from "./zod/objekt";

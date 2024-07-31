@@ -6,5 +6,8 @@ export default defineConfig({
     globals: true,
     environment: "node",
     setupFiles: "./tests/setup.ts",
+    coverage: {
+      provider: "v8",
+    },
   },
 } as UserConfig);

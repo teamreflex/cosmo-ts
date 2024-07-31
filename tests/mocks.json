@@ -955,5 +955,564 @@
 
   "rewardsCheck": {
     "isClaimable": true
+  },
+
+  "gridArtistStatus": {
+    "totalCompletedGrids": 1,
+    "totalSpecialObjekts": 2
+  },
+
+  "gridEditions": {
+    "editions": [
+      {
+        "id": "artms-atom01-first-edition",
+        "artist": "artms",
+        "title": "Atom 01",
+        "subtitle": "1st Edition | 101-108",
+        "season": {
+          "createdAt": "2023-06-17T09:13:50.157Z",
+          "createdBy": "email@example.com",
+          "updatedAt": "2024-05-31T03:13:31.452Z",
+          "activeAt": "2023-06-17T09:13:50.000Z",
+          "order": 1,
+          "id": 3,
+          "artist": "artms",
+          "title": "Atom01",
+          "image": null,
+          "startDate": "2023-06-18T00:00:00.000Z",
+          "endDate": "2024-05-31T04:00:00.000Z",
+          "ongoing": false
+        },
+        "image": "https://static.cosmo.fans/images/grid-prod/atom01-first-edition.png",
+        "order": 1,
+        "createdAt": "2023-07-02T06:48:36.143Z",
+        "status": {
+          "totalGrids": 5,
+          "completedGrids": 10
+        }
+      },
+      {
+        "id": "artms-binary01-first-edition",
+        "artist": "artms",
+        "title": "Binary 01",
+        "subtitle": "1st Edition | 101-108",
+        "season": {
+          "createdAt": "2024-04-26T04:11:03.183Z",
+          "createdBy": "email@example.com",
+          "updatedAt": "2024-05-31T03:13:54.352Z",
+          "activeAt": "2024-05-31T03:00:00.000Z",
+          "order": 2,
+          "id": 7,
+          "artist": "artms",
+          "title": "Binary01",
+          "image": null,
+          "startDate": "2024-05-31T04:00:00.000Z",
+          "endDate": null,
+          "ongoing": false
+        },
+        "image": "https://static.cosmo.fans/images/grid-prod/binary01-first-edition.png",
+        "order": 1,
+        "createdAt": "2024-05-30T23:16:08.506Z",
+        "status": {
+          "totalGrids": 5,
+          "completedGrids": 10
+        }
+      },
+      {
+        "id": "artms-atom01-second-edition",
+        "artist": "artms",
+        "title": "Atom 01",
+        "subtitle": "2nd Edition | 109-116",
+        "season": {
+          "createdAt": "2023-06-17T09:13:50.157Z",
+          "createdBy": "email@example.com",
+          "updatedAt": "2024-05-31T03:13:31.452Z",
+          "activeAt": "2023-06-17T09:13:50.000Z",
+          "order": 1,
+          "id": 3,
+          "artist": "artms",
+          "title": "Atom01",
+          "image": null,
+          "startDate": "2023-06-18T00:00:00.000Z",
+          "endDate": "2024-05-31T04:00:00.000Z",
+          "ongoing": false
+        },
+        "image": "https://static.cosmo.fans/images/grid-prod/atom01-second-edition.svg",
+        "order": 2,
+        "createdAt": "2023-10-31T18:28:31.000Z",
+        "status": {
+          "totalGrids": 5,
+          "completedGrids": 10
+        }
+      },
+      {
+        "id": "artms-atom01-third-edition",
+        "artist": "artms",
+        "title": "Atom 01",
+        "subtitle": "3rd Edition | 117-120",
+        "season": {
+          "createdAt": "2023-06-17T09:13:50.157Z",
+          "createdBy": "email@example.com",
+          "updatedAt": "2024-05-31T03:13:31.452Z",
+          "activeAt": "2023-06-17T09:13:50.000Z",
+          "order": 1,
+          "id": 3,
+          "artist": "artms",
+          "title": "Atom01",
+          "image": null,
+          "startDate": "2023-06-18T00:00:00.000Z",
+          "endDate": "2024-05-31T04:00:00.000Z",
+          "ongoing": false
+        },
+        "image": "https://static.cosmo.fans/images/grid-prod/atom01-third-edition.png",
+        "order": 3,
+        "createdAt": "2024-01-15T00:00:00.000Z",
+        "status": {
+          "totalGrids": 5,
+          "completedGrids": 10
+        }
+      }
+    ]
+  },
+
+  "gridEditionList": {
+    "grids": [
+      {
+        "id": "artms-binary01-heejin-first",
+        "edition": {
+          "createdAt": "2024-05-30T23:16:08.506Z",
+          "createdBy": "",
+          "updatedAt": "2024-05-31T03:11:20.657Z",
+          "activeAt": "2024-05-31T03:00:00.000Z",
+          "order": 1,
+          "id": "artms-binary01-first-edition",
+          "artist": "artms",
+          "title": "Binary 01",
+          "subtitle": "1st Edition | 101-108",
+          "image": "https://static.cosmo.fans/images/grid-prod/binary01-first-edition.png",
+          "season": {
+            "createdAt": "2024-04-26T04:11:03.183Z",
+            "createdBy": "email@example.com",
+            "updatedAt": "2024-05-31T03:13:54.352Z",
+            "activeAt": "2024-05-31T03:00:00.000Z",
+            "order": 2,
+            "id": 7,
+            "artist": "artms",
+            "title": "Binary01",
+            "image": null,
+            "startDate": "2024-05-31T04:00:00.000Z",
+            "endDate": null
+          }
+        },
+        "member": "HeeJin",
+        "memberImage": "https://static.cosmo.fans/images/artms/HeeJin.jpg",
+        "class": "First",
+        "slots": [
+          {
+            "no": 101,
+            "collections": ["Binary01 HeeJin 101A", "Binary01 HeeJin 101Z"]
+          },
+          {
+            "no": 102,
+            "collections": ["Binary01 HeeJin 102A", "Binary01 HeeJin 102Z"]
+          },
+          {
+            "no": 103,
+            "collections": ["Binary01 HeeJin 103A", "Binary01 HeeJin 103Z"]
+          },
+          {
+            "no": 104,
+            "collections": ["Binary01 HeeJin 104A", "Binary01 HeeJin 104Z"]
+          },
+          {
+            "no": 105,
+            "collections": ["Binary01 HeeJin 105A", "Binary01 HeeJin 105Z"]
+          },
+          {
+            "no": 106,
+            "collections": ["Binary01 HeeJin 106A", "Binary01 HeeJin 106Z"]
+          },
+          {
+            "no": 107,
+            "collections": ["Binary01 HeeJin 107A", "Binary01 HeeJin 107Z"]
+          },
+          {
+            "no": 108,
+            "collections": ["Binary01 HeeJin 108A", "Binary01 HeeJin 108Z"]
+          }
+        ],
+        "reward": [
+          {
+            "collectionId": "Binary01 HeeJin 201Z"
+          },
+          {
+            "collectionId": "Binary01 HeeJin 202Z"
+          }
+        ]
+      },
+      {
+        "id": "artms-binary01-haseul-first",
+        "edition": {
+          "createdAt": "2024-05-30T23:16:08.506Z",
+          "createdBy": "",
+          "updatedAt": "2024-05-31T03:11:20.657Z",
+          "activeAt": "2024-05-31T03:00:00.000Z",
+          "order": 1,
+          "id": "artms-binary01-first-edition",
+          "artist": "artms",
+          "title": "Binary 01",
+          "subtitle": "1st Edition | 101-108",
+          "image": "https://static.cosmo.fans/images/grid-prod/binary01-first-edition.png",
+          "season": {
+            "createdAt": "2024-04-26T04:11:03.183Z",
+            "createdBy": "email@example.com",
+            "updatedAt": "2024-05-31T03:13:54.352Z",
+            "activeAt": "2024-05-31T03:00:00.000Z",
+            "order": 2,
+            "id": 7,
+            "artist": "artms",
+            "title": "Binary01",
+            "image": null,
+            "startDate": "2024-05-31T04:00:00.000Z",
+            "endDate": null
+          }
+        },
+        "member": "HaSeul",
+        "memberImage": "https://static.cosmo.fans/images/artms/HaSeul.jpg",
+        "class": "First",
+        "slots": [
+          {
+            "no": 101,
+            "collections": ["Binary01 HaSeul 101A", "Binary01 HaSeul 101Z"]
+          },
+          {
+            "no": 102,
+            "collections": ["Binary01 HaSeul 102A", "Binary01 HaSeul 102Z"]
+          },
+          {
+            "no": 103,
+            "collections": ["Binary01 HaSeul 103A", "Binary01 HaSeul 103Z"]
+          },
+          {
+            "no": 104,
+            "collections": ["Binary01 HaSeul 104A", "Binary01 HaSeul 104Z"]
+          },
+          {
+            "no": 105,
+            "collections": ["Binary01 HaSeul 105A", "Binary01 HaSeul 105Z"]
+          },
+          {
+            "no": 106,
+            "collections": ["Binary01 HaSeul 106A", "Binary01 HaSeul 106Z"]
+          },
+          {
+            "no": 107,
+            "collections": ["Binary01 HaSeul 107A", "Binary01 HaSeul 107Z"]
+          },
+          {
+            "no": 108,
+            "collections": ["Binary01 HaSeul 108A", "Binary01 HaSeul 108Z"]
+          }
+        ],
+        "reward": [
+          {
+            "collectionId": "Binary01 HaSeul 201Z"
+          },
+          {
+            "collectionId": "Binary01 HaSeul 202Z"
+          }
+        ]
+      },
+      {
+        "id": "artms-binary01-kimlip-first",
+        "edition": {
+          "createdAt": "2024-05-30T23:16:08.506Z",
+          "createdBy": "",
+          "updatedAt": "2024-05-31T03:11:20.657Z",
+          "activeAt": "2024-05-31T03:00:00.000Z",
+          "order": 1,
+          "id": "artms-binary01-first-edition",
+          "artist": "artms",
+          "title": "Binary 01",
+          "subtitle": "1st Edition | 101-108",
+          "image": "https://static.cosmo.fans/images/grid-prod/binary01-first-edition.png",
+          "season": {
+            "createdAt": "2024-04-26T04:11:03.183Z",
+            "createdBy": "email@example.com",
+            "updatedAt": "2024-05-31T03:13:54.352Z",
+            "activeAt": "2024-05-31T03:00:00.000Z",
+            "order": 2,
+            "id": 7,
+            "artist": "artms",
+            "title": "Binary01",
+            "image": null,
+            "startDate": "2024-05-31T04:00:00.000Z",
+            "endDate": null
+          }
+        },
+        "member": "KimLip",
+        "memberImage": "https://static.cosmo.fans/images/artms/KimLip.jpg",
+        "class": "First",
+        "slots": [
+          {
+            "no": 101,
+            "collections": ["Binary01 KimLip 101A", "Binary01 KimLip 101Z"]
+          },
+          {
+            "no": 102,
+            "collections": ["Binary01 KimLip 102A", "Binary01 KimLip 102Z"]
+          },
+          {
+            "no": 103,
+            "collections": ["Binary01 KimLip 103A", "Binary01 KimLip 103Z"]
+          },
+          {
+            "no": 104,
+            "collections": ["Binary01 KimLip 104A", "Binary01 KimLip 104Z"]
+          },
+          {
+            "no": 105,
+            "collections": ["Binary01 KimLip 105A", "Binary01 KimLip 105Z"]
+          },
+          {
+            "no": 106,
+            "collections": ["Binary01 KimLip 106A", "Binary01 KimLip 106Z"]
+          },
+          {
+            "no": 107,
+            "collections": ["Binary01 KimLip 107A", "Binary01 KimLip 107Z"]
+          },
+          {
+            "no": 108,
+            "collections": ["Binary01 KimLip 108A", "Binary01 KimLip 108Z"]
+          }
+        ],
+        "reward": [
+          {
+            "collectionId": "Binary01 KimLip 201Z"
+          },
+          {
+            "collectionId": "Binary01 KimLip 202Z"
+          }
+        ]
+      },
+      {
+        "id": "artms-binary01-jinsoul-first",
+        "edition": {
+          "createdAt": "2024-05-30T23:16:08.506Z",
+          "createdBy": "",
+          "updatedAt": "2024-05-31T03:11:20.657Z",
+          "activeAt": "2024-05-31T03:00:00.000Z",
+          "order": 1,
+          "id": "artms-binary01-first-edition",
+          "artist": "artms",
+          "title": "Binary 01",
+          "subtitle": "1st Edition | 101-108",
+          "image": "https://static.cosmo.fans/images/grid-prod/binary01-first-edition.png",
+          "season": {
+            "createdAt": "2024-04-26T04:11:03.183Z",
+            "createdBy": "email@example.com",
+            "updatedAt": "2024-05-31T03:13:54.352Z",
+            "activeAt": "2024-05-31T03:00:00.000Z",
+            "order": 2,
+            "id": 7,
+            "artist": "artms",
+            "title": "Binary01",
+            "image": null,
+            "startDate": "2024-05-31T04:00:00.000Z",
+            "endDate": null
+          }
+        },
+        "member": "JinSoul",
+        "memberImage": "https://static.cosmo.fans/images/artms/JinSoul.jpg",
+        "class": "First",
+        "slots": [
+          {
+            "no": 101,
+            "collections": ["Binary01 JinSoul 101A", "Binary01 JinSoul 101Z"]
+          },
+          {
+            "no": 102,
+            "collections": ["Binary01 JinSoul 102A", "Binary01 JinSoul 102Z"]
+          },
+          {
+            "no": 103,
+            "collections": ["Binary01 JinSoul 103A", "Binary01 JinSoul 103Z"]
+          },
+          {
+            "no": 104,
+            "collections": ["Binary01 JinSoul 104A", "Binary01 JinSoul 104Z"]
+          },
+          {
+            "no": 105,
+            "collections": ["Binary01 JinSoul 105A", "Binary01 JinSoul 105Z"]
+          },
+          {
+            "no": 106,
+            "collections": ["Binary01 JinSoul 106A", "Binary01 JinSoul 106Z"]
+          },
+          {
+            "no": 107,
+            "collections": ["Binary01 JinSoul 107A", "Binary01 JinSoul 107Z"]
+          },
+          {
+            "no": 108,
+            "collections": ["Binary01 JinSoul 108A", "Binary01 JinSoul 108Z"]
+          }
+        ],
+        "reward": [
+          {
+            "collectionId": "Binary01 JinSoul 201Z"
+          },
+          {
+            "collectionId": "Binary01 JinSoul 202Z"
+          }
+        ]
+      },
+      {
+        "id": "artms-binary01-choerry-first",
+        "edition": {
+          "createdAt": "2024-05-30T23:16:08.506Z",
+          "createdBy": "",
+          "updatedAt": "2024-05-31T03:11:20.657Z",
+          "activeAt": "2024-05-31T03:00:00.000Z",
+          "order": 1,
+          "id": "artms-binary01-first-edition",
+          "artist": "artms",
+          "title": "Binary 01",
+          "subtitle": "1st Edition | 101-108",
+          "image": "https://static.cosmo.fans/images/grid-prod/binary01-first-edition.png",
+          "season": {
+            "createdAt": "2024-04-26T04:11:03.183Z",
+            "createdBy": "email@example.com",
+            "updatedAt": "2024-05-31T03:13:54.352Z",
+            "activeAt": "2024-05-31T03:00:00.000Z",
+            "order": 2,
+            "id": 7,
+            "artist": "artms",
+            "title": "Binary01",
+            "image": null,
+            "startDate": "2024-05-31T04:00:00.000Z",
+            "endDate": null
+          }
+        },
+        "member": "Choerry",
+        "memberImage": "https://static.cosmo.fans/images/artms/Choerry.jpg",
+        "class": "First",
+        "slots": [
+          {
+            "no": 101,
+            "collections": ["Binary01 Choerry 101A", "Binary01 Choerry 101Z"]
+          },
+          {
+            "no": 102,
+            "collections": ["Binary01 Choerry 102A", "Binary01 Choerry 102Z"]
+          },
+          {
+            "no": 103,
+            "collections": ["Binary01 Choerry 103A", "Binary01 Choerry 103Z"]
+          },
+          {
+            "no": 104,
+            "collections": ["Binary01 Choerry 104A", "Binary01 Choerry 104Z"]
+          },
+          {
+            "no": 105,
+            "collections": ["Binary01 Choerry 105A", "Binary01 Choerry 105Z"]
+          },
+          {
+            "no": 106,
+            "collections": ["Binary01 Choerry 106A", "Binary01 Choerry 106Z"]
+          },
+          {
+            "no": 107,
+            "collections": ["Binary01 Choerry 107A", "Binary01 Choerry 107Z"]
+          },
+          {
+            "no": 108,
+            "collections": ["Binary01 Choerry 108A", "Binary01 Choerry 108Z"]
+          }
+        ],
+        "reward": [
+          {
+            "collectionId": "Binary01 Choerry 201Z"
+          },
+          {
+            "collectionId": "Binary01 Choerry 202Z"
+          }
+        ]
+      }
+    ]
+  },
+
+  "gridStatus": {
+    "ongoing": {
+      "id": 1444168,
+      "slotStatuses": [
+        {
+          "no": 101,
+          "completed": false
+        },
+        {
+          "no": 102,
+          "completed": false
+        },
+        {
+          "no": 103,
+          "completed": false
+        },
+        {
+          "no": 104,
+          "completed": false
+        },
+        {
+          "no": 105,
+          "completed": false
+        },
+        {
+          "no": 106,
+          "completed": false
+        },
+        {
+          "no": 107,
+          "completed": false
+        },
+        {
+          "no": 108,
+          "completed": false
+        }
+      ],
+      "allCompleted": false,
+      "rewardClaimed": false
+    },
+    "ownedRewardObjektCount": 2
+  },
+
+  "gridClaim": {
+    "objekt": {
+      "collectionId": "Atom01 JinSoul 201Z",
+      "season": "Atom01",
+      "member": "JinSoul",
+      "collectionNo": "201Z",
+      "class": "Special",
+      "artists": ["artms"],
+      "thumbnailImage": "https://imagedelivery.net/qQuMkbHJ-0s6rwu8vup_5w/543842fc-da51-429f-b095-6b429484e500/thumbnail",
+      "frontImage": "https://imagedelivery.net/qQuMkbHJ-0s6rwu8vup_5w/543842fc-da51-429f-b095-6b429484e500/4x",
+      "backImage": "https://imagedelivery.net/qQuMkbHJ-0s6rwu8vup_5w/9aa7fc9d-976b-49ba-89ae-85d53333df00/4x",
+      "accentColor": "#F7F7F7",
+      "backgroundColor": "#F7F7F7",
+      "textColor": "#000000",
+      "comoAmount": 1,
+      "transferableByDefault": true,
+      "tokenId": "1252359",
+      "tokenAddress": "0x0fB69F54bA90f17578a59823E09e5a1f8F3FA200",
+      "objektNo": 21,
+      "transferable": true
+    },
+    "transaction": {
+      "txId": "",
+      "chainId": "",
+      "ref": ""
+    }
   }
 }

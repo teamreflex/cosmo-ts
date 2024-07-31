@@ -61,9 +61,29 @@ export const handlers = [
   http.post(cosmo("/bff/v1/event-rewards"), () =>
     HttpResponse.json(undefined, { status: 204 })
   ),
+
+  // grid
+  http.get(cosmo("/grid/v3/*/status"), () =>
+    HttpResponse.json(json.gridArtistStatus)
+  ),
+  http.get(cosmo("/grid/v3/*/edition"), () =>
+    HttpResponse.json(json.gridEditions)
+  ),
+  http.get(cosmo("/grid/v2/edition/*"), () =>
+    HttpResponse.json(json.gridEditionList)
+  ),
+  http.get(cosmo("/grid/v1/*/status"), () =>
+    HttpResponse.json(json.gridStatus)
+  ),
+  http.post(cosmo("/grid/v1/*/complete"), () =>
+    HttpResponse.json(undefined, { status: 204 })
+  ),
+  http.post(cosmo("/grid/v1/*/claim-reward"), () =>
+    HttpResponse.json(json.gridClaim)
+  ),
 ];
 
-// conditional handlers
+// authorization handlers
 export const unauthorizedHandler = http.all(cosmo("/*"), () =>
   HttpResponse.json(
     {
@@ -82,6 +102,21 @@ export const unauthorizedBffHandler = http.all(cosmo("/*"), () =>
       message: "Sorry, your username or password was entered Incorrectly",
     },
     { status: 401 }
+  )
+);
+
+// misc states
+export const gridClaimError = http.post(cosmo("/grid/v1/*/claim-reward"), () =>
+  HttpResponse.json(
+    {
+      error: {
+        message: "not completed yet",
+        name: "Error",
+        payload: {},
+        status: 400,
+      },
+    },
+    { status: 400 }
   )
 );
 

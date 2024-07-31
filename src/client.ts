@@ -1,11 +1,12 @@
+import { Config } from "./config";
 import { ArtistAPI } from "./api/artist";
 import { AuthAPI } from "./api/auth";
+import { GridAPI } from "./api/grid";
 import { NewsAPI } from "./api/news";
 import { ObjektAPI } from "./api/objekt";
 import { RewardsAPI } from "./api/rewards";
 import { SeasonAPI } from "./api/season";
 import { UserAPI } from "./api/user";
-import { Config } from "./config";
 
 export class CosmoClient {
   private config: Config;
@@ -16,6 +17,7 @@ export class CosmoClient {
   public news: NewsAPI;
   public objekts: ObjektAPI;
   public rewards: RewardsAPI;
+  public grid: GridAPI;
 
   constructor(config: Config) {
     this.config = {
@@ -30,16 +32,7 @@ export class CosmoClient {
     this.news = new NewsAPI(this.config);
     this.objekts = new ObjektAPI(this.config);
     this.rewards = new RewardsAPI(this.config);
-  }
-
-  /**
-   * Merge a new config object into the existing one.
-   */
-  setConfig(config: Config) {
-    this.config = {
-      ...this.config,
-      ...config,
-    };
+    this.grid = new GridAPI(this.config);
   }
 
   /**
@@ -50,6 +43,9 @@ export class CosmoClient {
   }
 }
 
-export function createClient(config: Config): CosmoClient {
-  return new CosmoClient(config);
+/**
+ * Create a new instance of the client.
+ */
+export function createClient(config?: Config): CosmoClient {
+  return new CosmoClient(config ?? {});
 }

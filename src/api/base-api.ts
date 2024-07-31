@@ -48,6 +48,8 @@ export class BaseAPI {
           const body: CosmoErrorResponse = await response.json();
 
           switch (response.status) {
+            case 400:
+              throw new BadRequestError(body.error.message);
             case 401:
               throw new UnauthorizedError(body.error.details);
             case 403:

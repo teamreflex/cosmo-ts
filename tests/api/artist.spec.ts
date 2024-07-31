@@ -1,13 +1,12 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { CosmoClient } from "../../src/client";
+import { CosmoClient, createClient } from "../../src/client";
 import json from "../mocks.json";
 import { AccessTokenMissing } from "../../src/errors";
 
 describe("ArtistAPI", () => {
   let cosmo: CosmoClient;
-
   beforeEach(() => {
-    cosmo = new CosmoClient({});
+    cosmo = createClient({});
   });
 
   it("should list artists", async () => {

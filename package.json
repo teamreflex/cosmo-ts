@@ -6,7 +6,8 @@
     "dev": "tsup --watch --clean=false",
     "build": "tsup",
     "test": "vitest",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [
     "kpop",
@@ -17,12 +18,13 @@
   ],
   "author": "",
   "license": "MIT",
-  "repository": "teamreflex/cosmo-ts",
+  "repository": "https://github.com/teamreflex/cosmo-ts",
   "dependencies": {
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
+    "@vitest/coverage-v8": "^2.0.4",
     "msw": "^2.3.4",
     "tsup": "^8.2.3",
     "typescript": "^5.5.4",

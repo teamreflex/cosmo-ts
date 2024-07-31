@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { CosmoClient } from "../../src/client";
+import { CosmoClient, createClient } from "../../src/client";
 import { unauthorizedHandler } from "../mocks";
 import { server } from "../setup";
 import { AccessTokenMissing, UnauthorizedError } from "../../src/errors";
@@ -7,9 +7,8 @@ import json from "../mocks.json";
 
 describe("UserAPI", () => {
   let cosmo: CosmoClient;
-
   beforeEach(() => {
-    cosmo = new CosmoClient({});
+    cosmo = createClient({});
   });
 
   describe("authenticated", () => {

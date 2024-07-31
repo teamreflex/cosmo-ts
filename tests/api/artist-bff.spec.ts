@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { CosmoClient } from "../../src/client";
+import { CosmoClient, createClient } from "../../src/client";
 import json from "../mocks.json";
 import { AccessTokenMissing, UnauthorizedError } from "../../src/errors";
 import { server } from "../setup";
@@ -7,9 +7,8 @@ import { unauthorizedBffHandler } from "../mocks";
 
 describe("ArtistAPI - BFF", () => {
   let cosmo: CosmoClient;
-
   beforeEach(() => {
-    cosmo = new CosmoClient({});
+    cosmo = createClient({});
   });
 
   describe("authenticated", () => {
