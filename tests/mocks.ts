@@ -16,6 +16,9 @@ export const handlers = [
   http.get(cosmo("/user/v1/by-nickname/*"), () =>
     HttpResponse.json(json.byNickname)
   ),
+  http.put(cosmo("/user/v1/me/device-profile"), () =>
+    HttpResponse.json(undefined, { status: 204 })
+  ),
 
   // auth
   http.post(cosmo("/auth/v1/signin"), () => HttpResponse.json(json.login)),
@@ -48,6 +51,12 @@ export const handlers = [
   ),
   http.post(cosmo("/objekt/v1/by-serial/*/claim"), () =>
     HttpResponse.json(json.claimBySerial)
+  ),
+  http.post(cosmo("/lenticular/v1"), () =>
+    HttpResponse.json(undefined, { status: 201 })
+  ),
+  http.delete(cosmo("/lenticular/v1/*"), () =>
+    HttpResponse.json(undefined, { status: 204 })
   ),
   http.get(cosmo("/objekt/v1/token/*"), () => HttpResponse.json(json.token)),
 

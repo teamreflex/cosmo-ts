@@ -68,7 +68,7 @@ export class BaseAPI {
     }
 
     // probably shouldn't do this
-    if (response.status === 204) {
+    if (response.status === 201 || response.status === 204) {
       return true as T;
     }
 

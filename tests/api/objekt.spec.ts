@@ -33,15 +33,13 @@ describe("ObjektAPI", () => {
     });
 
     it("should apply lenticular to two objekts", async () => {
-      expect(() => {
-        return cosmo.objekts.applyLenticular("A", "B");
-      }).rejects.toThrowError("not implemented");
+      const response = await cosmo.objekts.applyLenticular("A", "B");
+      expect(response).toEqual(true);
     });
 
     it("should remove lenticular from an objekt", async () => {
-      expect(() => {
-        return cosmo.objekts.removeLenticular("A");
-      }).rejects.toThrowError("not implemented");
+      const response = await cosmo.objekts.removeLenticular("A");
+      expect(response).toEqual(true);
     });
   });
 
@@ -104,12 +102,14 @@ describe("ObjektAPI", () => {
     it("applying lenticular to two objekts should handle unauthorized requests", async () => {
       await expect(
         cosmo.objekts.applyLenticular("A", "B")
-      ).rejects.toThrowError(new Error("not implemented"));
+      ).rejects.toThrowError(
+        new UnauthorizedError("missing Authorization header")
+      );
     });
 
     it("removing lenticular from an objekt should handle unauthorized requests", async () => {
       await expect(cosmo.objekts.removeLenticular("A")).rejects.toThrowError(
-        new Error("not implemented")
+        new UnauthorizedError("missing Authorization header")
       );
     });
   });

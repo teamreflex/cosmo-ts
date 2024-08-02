@@ -43,6 +43,22 @@ export class UserAPI extends BaseAPI {
       `/user/v1/by-nickname/${nickname}`
     );
   }
+
+  /**
+   * Update the current user's device profile.
+   *
+   * Authentication is required.
+   */
+  async updateDeviceProfile(profile: User.DeviceProfile) {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
+    return await this.request<boolean>(`/user/v1/me/device-profile`, {
+      method: "PUT",
+      body: JSON.stringify(profile),
+    });
+  }
 }
 
 export namespace User {
@@ -63,6 +79,7 @@ export namespace User {
 
   export type FollowedArtist = Artist.Artist & {
     receivedWelcomeObjekt: boolean;
+    purchaseCount: number;
     assetBalance: {
       totalComo: number;
       totalObjekt: number;
@@ -75,6 +92,13 @@ export namespace User {
       original: string;
       thumbnail: string;
     };
+  };
+
+  export type DeviceProfile = {
+    locale: string;
+    country: string;
+    os: string;
+    appVersion: string;
   };
 }
 

@@ -25,6 +25,16 @@ describe("UserAPI", () => {
       const response = await cosmo.users.search("example");
       expect(response).toEqual(json.search);
     });
+
+    it("should update the device profile", async () => {
+      const response = await cosmo.users.updateDeviceProfile({
+        locale: "en",
+        country: "nz",
+        os: "ios",
+        appVersion: "2.9.0",
+      });
+      expect(response).toEqual(true);
+    });
   });
 
   describe("unauthenticated", () => {
@@ -38,6 +48,17 @@ describe("UserAPI", () => {
       expect(() => cosmo.users.search("example")).rejects.toThrowError(
         new AccessTokenMissing()
       );
+    });
+
+    it("updating the device profile should throw an error", async () => {
+      expect(() =>
+        cosmo.users.updateDeviceProfile({
+          locale: "en",
+          country: "nz",
+          os: "ios",
+          appVersion: "2.9.0",
+        })
+      ).rejects.toThrowError(new AccessTokenMissing());
     });
   });
 
@@ -55,6 +76,19 @@ describe("UserAPI", () => {
 
     it("user search should handle unauthorized requests", async () => {
       expect(() => cosmo.users.search("example")).rejects.toThrowError(
+        new UnauthorizedError("missing Authorization header")
+      );
+    });
+
+    it("updating the device profile should handle unauthorized requests", async () => {
+      expect(() =>
+        cosmo.users.updateDeviceProfile({
+          locale: "en",
+          country: "nz",
+          os: "ios",
+          appVersion: "2.9.0",
+        })
+      ).rejects.toThrowError(
         new UnauthorizedError("missing Authorization header")
       );
     });

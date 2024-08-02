@@ -2,6 +2,7 @@ import { z } from "zod";
 import { BaseAPI } from "./base-api";
 import { objektFilterSchema } from "../zod/objekt";
 import { AccessTokenMissing } from "../errors";
+import { ValidArtist } from "./artist";
 
 export class ObjektAPI extends BaseAPI {
   /**
@@ -9,15 +10,17 @@ export class ObjektAPI extends BaseAPI {
    *
    * Authentication is required.
    */
-  async filters() {
+  async filters(artist?: ValidArtist) {
     if (!this.config.accessToken) {
       throw new AccessTokenMissing();
     }
 
+    const params = artist ? `?artistName=${artist}` : "";
+
     return await this.request<{
       sorts: Filters.Sort[];
       filters: Filters.Filter[];
-    }>(`/objekt/v2/filters`);
+    }>(`/objekt/v2/filters${params}`);
   }
 
   /**
@@ -92,7 +95,6 @@ export class ObjektAPI extends BaseAPI {
       throw new AccessTokenMissing();
     }
 
-    throw new Error("not implemented");
     return await this.request<boolean>(`/lenticular/v1`, {
       method: "POST",
       body: JSON.stringify({
@@ -112,7 +114,6 @@ export class ObjektAPI extends BaseAPI {
       throw new AccessTokenMissing();
     }
 
-    throw new Error("not implemented");
     return await this.request<boolean>(`/lenticular/v1/${tokenId}`, {
       method: "DELETE",
     });

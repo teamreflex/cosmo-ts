@@ -51,8 +51,8 @@
 - [ ] claim by serial
 - [ ] objekt collection by address
 - [x] get token
-- [ ] apply lenticular
-- [ ] remove lenticular
+- [x] apply lenticular
+- [x] remove lenticular
 - [ ] gas station
 
 ## Rekord
@@ -86,3 +86,4 @@
 - [x] get current user
 - [x] search users
 - [x] get user by nickname
+- [x] update device profile
