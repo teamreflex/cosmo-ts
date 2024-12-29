@@ -20,16 +20,16 @@
   "license": "MIT",
   "repository": "https://github.com/teamreflex/cosmo-ts",
   "dependencies": {
-    "zod": "^3.23.8"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
-    "@vitest/coverage-v8": "^2.0.4",
-    "msw": "^2.3.4",
-    "tsup": "^8.2.3",
-    "typescript": "^5.5.4",
-    "vite": "^5.3.5",
-    "vitest": "^2.0.4"
+    "@vitest/coverage-v8": "^2.1.8",
+    "msw": "^2.7.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.6",
+    "vitest": "^2.1.8"
   },
   "type": "module",
   "main": "./dist/index.cjs",
