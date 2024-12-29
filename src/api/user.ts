@@ -1,11 +1,12 @@
 import { AccessTokenMissing } from "../errors";
-import { LegacyArtist, ValidArtist } from "./legacy-artist";
+import { ValidArtist } from "../types/artist-common";
+import { Artist } from "./artist";
 import { BaseAPI } from "./base-api";
+import { LegacyArtist } from "./legacy-artist";
 
 export class UserAPI extends BaseAPI {
   /**
    * Get the currently authenticated user.
-   *
    * Authentication is required.
    */
   async me() {
@@ -19,8 +20,25 @@ export class UserAPI extends BaseAPI {
   }
 
   /**
+   * Get the currently authenticated user.
+   * Authentication is required.
+   */
+  async meBff() {
+    if (!this.config.accessToken) {
+      throw new AccessTokenMissing();
+    }
+
+    const params = new URLSearchParams({
+      tid: crypto.randomUUID(),
+    });
+
+    return await this.request<User.UserBFF>(
+      `/bff/v1/users/me?${params.toString()}`
+    );
+  }
+
+  /**
    * Search for users.
-   *
    * Authentication is required.
    */
   async search(query: string) {
@@ -35,7 +53,6 @@ export class UserAPI extends BaseAPI {
 
   /**
    * Get a search result by nickname.
-   *
    * Authentication is not required.
    */
   async byNickname(nickname: string) {
@@ -46,7 +63,6 @@ export class UserAPI extends BaseAPI {
 
   /**
    * Update the current user's device profile.
-   *
    * Authentication is required.
    */
   async updateDeviceProfile(profile: User.DeviceProfile) {
@@ -64,6 +80,7 @@ export class UserAPI extends BaseAPI {
 export namespace User {
   export type User = {
     id: number;
+    guid: string;
     email: string;
     nickname: string;
     address: string;
@@ -92,6 +109,31 @@ export namespace User {
       original: string;
       thumbnail: string;
     };
+  };
+
+  export type UserBFF = {
+    id: number;
+    nickname: string;
+    address: string;
+    profileImageUrl: string;
+    birth: string;
+    loginChannel: "email";
+    socialLoginUserId: string | null;
+    isBanned: boolean;
+    marketingConsentDate: string | null;
+    lastViewedArtist: ValidArtist;
+    lastActiveAt: string;
+    locale: string;
+    country: string;
+    os: string;
+    appVersion: string;
+    createdAt: string;
+    updatedAt: string;
+    artists: Artist.ArtistV1[];
+    profileImages: {
+      artistName: ValidArtist;
+      profileImageUrl: string;
+    }[];
   };
 
   export type DeviceProfile = {

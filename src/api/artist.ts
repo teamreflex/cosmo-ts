@@ -1,6 +1,6 @@
-import { randomUUID } from "crypto";
 import { BaseAPI } from "./base-api";
 import { AccessTokenMissing } from "../errors";
+import { ValidArtist } from "../types/artist-common";
 
 export class ArtistAPI extends BaseAPI {
   /**
@@ -33,7 +33,7 @@ export class ArtistAPI extends BaseAPI {
 
     const params = new URLSearchParams({
       artistName: artist,
-      tid: randomUUID(),
+      tid: crypto.randomUUID(),
     });
 
     return await this.request<Artist.ArtistV1>(
@@ -41,14 +41,6 @@ export class ArtistAPI extends BaseAPI {
     );
   }
 }
-
-/**
- * The list of artists available.
- *
- * `(string & {})` allows any string through while giving typesafety on known artists.
- */
-export const validArtists = ["tripleS", "ARTMS"] as const;
-export type ValidArtist = (typeof validArtists)[number] | (string & {});
 
 export namespace Artist {
   export type Artist = {

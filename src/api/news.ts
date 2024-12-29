@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { LegacyArtist, ValidArtist } from "./legacy-artist";
 import { BaseAPI } from "./base-api";
 import { bffNewsFeedSchema, newsFeedSchema } from "../zod/news";
 import { AccessTokenMissing } from "../errors";
-import { randomUUID } from "crypto";
+import { ValidArtist } from "../types/artist-common";
+import { LegacyArtist } from "./legacy-artist";
 
 export class NewsAPI extends BaseAPI {
   /**
@@ -67,7 +67,7 @@ export class NewsAPI extends BaseAPI {
 
     const params = new URLSearchParams({
       artistName: artistName,
-      tid: randomUUID(),
+      tid: crypto.randomUUID(),
       page: page.toString(),
       size: size.toString(),
     });

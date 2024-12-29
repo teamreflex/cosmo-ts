@@ -293,12 +293,105 @@
     }
   },
 
+  "getUserBFF": {
+    "id": 0,
+    "nickname": "Example",
+    "address": "0x0000000000000000000000000000000000000000",
+    "profileImageUrl": "",
+    "birth": "2000-01-01",
+    "loginChannel": "email",
+    "socialLoginUserId": null,
+    "isBanned": false,
+    "marketingConsentDate": "2024-03-04T04:13:23.000Z",
+    "lastViewedArtist": "artms",
+    "lastActiveAt": "2024-01-01T00:00:00.000Z",
+    "locale": "en",
+    "country": "us",
+    "os": "ios",
+    "appVersion": "2.13.0",
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z",
+    "artists": [
+      {
+        "name": "artms",
+        "title": "ARTMS",
+        "fandomName": "OURII",
+        "logoImageUrl": "https://static.cosmo.fans/assets/artms-logo.png",
+        "primaryImageUrl": "https://s3.ap-northeast-2.amazonaws.com/resources.cosmo.fans/artist/ARTMS.jpg",
+        "contracts": {
+          "Como": "0x8254D8D2903B20187cBC4Dd833d49cECc219F32E",
+          "Objekt": "0x0fB69F54bA90f17578a59823E09e5a1f8F3FA200",
+          "CommunityPool": "0x07F93cCc90aF32E4d6ea70A93F36DF9F58C97087",
+          "ComoMinter": "0x9640531cA96691b7F38e88fA17badAD90534d2A5",
+          "ObjektMinter": "0x9009e2b4fc02eb18e41994d235a78504600AC87c",
+          "Governor": "0x8466e6E218F0fe438Ac8f403f684451D20E59Ee3"
+        },
+        "createdAt": "2023-06-16T16:09:58.818Z",
+        "createdBy": "example@mod-haus.com",
+        "updatedAt": "2024-12-10T07:27:17.462Z",
+        "activeAt": "2023-06-17T05:53:17.000Z",
+        "order": 2
+      },
+      {
+        "name": "tripleS",
+        "title": "tripleS",
+        "fandomName": "WAV",
+        "logoImageUrl": "https://static.cosmo.fans/assets/triples-logo.png",
+        "primaryImageUrl": "https://s3.ap-northeast-2.amazonaws.com/resources.cosmo.fans/artist/tripleS.jpg",
+        "contracts": {
+          "Como": "0x58AeABfE2D9780c1bFcB713Bf5598261b15dB6e5",
+          "Objekt": "0xA4B37bE40F7b231Ee9574c4b16b7DDb7EAcDC99B",
+          "ObjektMinter": "0x3D898E02DFA77a1Ef69Ab8Ec369200a2e48DC5E3",
+          "Governor": "0xc3E5ad11aE2F00c740E74B81f134426A3331D950",
+          "CommunityPool": "0xdAE81c4c069c86fea2FC08cfD53a4201D661e447",
+          "ComoMinter": "0x1f6Be90bCb84523beF86E8cD1E8F1944Ca30eb5F"
+        },
+        "createdAt": "2022-08-04T00:00:00.000Z",
+        "createdBy": "example@mod-haus.com",
+        "updatedAt": "2024-12-23T09:46:47.865Z",
+        "activeAt": "2022-08-04T00:00:00.000Z",
+        "order": 1
+      }
+    ],
+    "profileImages": [
+      {
+        "artistName": "artms",
+        "profileImageUrl": "..."
+      },
+      {
+        "artistName": "tripleS",
+        "profileImageUrl": "..."
+      }
+    ]
+  },
+
   "search": {
     "hasNext": false,
     "results": [
       {
-        "nickname": "Example",
-        "address": "0xABCDEF",
+        "nickname": "Kairu",
+        "address": "0xcaB3C85ac8f4aE0153B7cF2Bbf1378397890848b",
+        "profileImageUrl": "",
+        "profile": [
+          {
+            "artistName": "artms",
+            "image": {
+              "original": "https://resources.cosmo.fans/images/user-profile/2024/12/23/09/600/8c535271fa6b43f9b8ee084e23febd5420241223094727197.jpeg",
+              "thumbnail": "https://resources.cosmo.fans/images/user-profile/2024/12/23/09/raw/5095382352f648cea59d45421256993920241223094726801"
+            }
+          },
+          {
+            "artistName": "tripleS",
+            "image": {
+              "original": "https://resources.cosmo.fans/images/user-profile/2024/12/23/09/600/819aad35744849b4aeb92cb0e77cf9e120241223095114851.jpeg",
+              "thumbnail": "https://resources.cosmo.fans/images/user-profile/2024/12/23/09/raw/6335c7e1744b4a1aa282fbb006bd39d920241223095114833"
+            }
+          }
+        ]
+      },
+      {
+        "nickname": "Kairuto",
+        "address": "0xc021b9D28Cd6467e5A6C4648A873A79e1a2AA818",
         "profileImageUrl": "",
         "profile": []
       }

@@ -1,3 +1,4 @@
+import { ValidArtist } from "../types/artist-common";
 import { BaseAPI } from "./base-api";
 
 /**
@@ -33,17 +34,6 @@ export class LegacyArtistAPI extends BaseAPI {
   }
 }
 
-/**
- * The list of artists available.
- *
- * `(string & {})` allows any string through while giving typesafety on known artists.
- */
-const validArtists = ["tripleS", "ARTMS"] as const;
-type ValidArtist = (typeof validArtists)[number] | (string & {});
-
-/**
- * @deprecated Use `Artist` instead.
- */
 export namespace LegacyArtist {
   export type Artist = {
     name: string;

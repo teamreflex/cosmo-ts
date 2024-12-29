@@ -5,7 +5,7 @@ const cosmo = (path: string) => `https://api.cosmo.fans${path}`;
 
 // default handlers
 export const handlers = [
-  // artist
+  // #region Artist
   http.get(cosmo("/bff/v3/artists"), () =>
     HttpResponse.json(json.getArtistsBff)
   ),
@@ -15,8 +15,9 @@ export const handlers = [
   http.get(cosmo("/bff/v1/artist"), () =>
     HttpResponse.json(json.getArtistBffV1)
   ),
+  // #endregion
 
-  // user
+  // #region User
   http.get(cosmo("/user/v1/me"), () => HttpResponse.json(json.getUser)),
   http.get(cosmo("/user/v1/search"), () => HttpResponse.json(json.search)),
   http.get(cosmo("/user/v1/by-nickname/*"), () =>
@@ -25,14 +26,17 @@ export const handlers = [
   http.put(cosmo("/user/v1/me/device-profile"), () =>
     HttpResponse.json(undefined, { status: 204 })
   ),
+  http.get(cosmo("/bff/v1/users/me"), () => HttpResponse.json(json.getUserBFF)),
+  // #endregion
 
-  // auth
+  // #region Auth
   http.post(cosmo("/auth/v1/signin"), () => HttpResponse.json(json.login)),
   http.post(cosmo("/auth/v1/refresh"), () =>
     HttpResponse.json(json.refreshToken)
   ),
+  // #endregion
 
-  // news
+  // #region News
   http.get(cosmo("/news/v1"), () => HttpResponse.json(json.newsHome)),
   http.get(cosmo("/news/v1/feed"), () => HttpResponse.json(json.newsFeed)),
   http.get(cosmo("/news/v1/exclusive"), () =>
@@ -41,11 +45,13 @@ export const handlers = [
   http.get(cosmo("/bff/v1/news/feed"), () =>
     HttpResponse.json(json.newsFeedBff)
   ),
+  // #endregion
 
-  // season
+  // #region Season
   http.get(cosmo("/season/v2/*"), () => HttpResponse.json(json.getSeasons)),
+  // #endregion
 
-  // objekt
+  // #region Objekt
   http.get("https://gas-station.cosmo.fans/v1/polygon-mainnet", () =>
     HttpResponse.json(json.gasStation)
   ),
@@ -65,8 +71,9 @@ export const handlers = [
     HttpResponse.json(undefined, { status: 204 })
   ),
   http.get(cosmo("/objekt/v1/token/*"), () => HttpResponse.json(json.token)),
+  // #endregion
 
-  // rewards
+  // #region Rewards
   http.get(cosmo("/bff/v1/event-rewards"), () =>
     HttpResponse.json(json.rewardsList)
   ),
@@ -76,8 +83,9 @@ export const handlers = [
   http.post(cosmo("/bff/v1/event-rewards"), () =>
     HttpResponse.json(undefined, { status: 204 })
   ),
+  // #endregion
 
-  // grid
+  // #region Grid
   http.get(cosmo("/grid/v3/*/status"), () =>
     HttpResponse.json(json.gridArtistStatus)
   ),
@@ -96,10 +104,12 @@ export const handlers = [
   http.post(cosmo("/grid/v1/*/claim-reward"), () =>
     HttpResponse.json(json.gridClaim)
   ),
+  // #endregion
 
-  // legacy artist
+  // #region Legacy
   http.get(cosmo("/artist/v1"), () => HttpResponse.json(json.getArtists)),
   http.get(cosmo("/artist/v1/*"), () => HttpResponse.json(json.getArtist)),
+  // #endregion
 ];
 
 // authorization handlers

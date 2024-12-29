@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { BaseAPI } from "./base-api";
 import { AccessTokenMissing, BadRequestError } from "../errors";
 
@@ -14,7 +13,7 @@ export class RewardsAPI extends BaseAPI {
     }
 
     const params = new URLSearchParams({
-      tid: randomUUID(),
+      tid: crypto.randomUUID(),
     });
 
     return await this.request<Rewards.RewardList>(
@@ -33,7 +32,7 @@ export class RewardsAPI extends BaseAPI {
     }
 
     const params = new URLSearchParams({
-      tid: randomUUID(),
+      tid: crypto.randomUUID(),
     });
 
     return await this.request<{ isClaimable: boolean }>(
@@ -52,7 +51,7 @@ export class RewardsAPI extends BaseAPI {
     }
 
     const params = new URLSearchParams({
-      tid: randomUUID(),
+      tid: crypto.randomUUID(),
     });
 
     return await this.request<boolean>(

@@ -1,4 +1,5 @@
 export { createClient, CosmoClient } from "./client";
+export * from "./types/artist-common";
 export { Artist } from "./api/artist";
 export { Auth } from "./api/auth";
 export { Grid } from "./api/grid";
