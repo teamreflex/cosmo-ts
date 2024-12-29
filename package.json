@@ -48,6 +48,9 @@
       }
     }
   },
+  "engines": {
+    "node": ">=20.x"
+  },
   "publishConfig": {
     "access": "public"
   },

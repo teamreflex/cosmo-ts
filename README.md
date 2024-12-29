@@ -4,6 +4,8 @@
 
 Unofficial TypeScript package for interfacing with [MODHAUS](https://www.mod-haus.com/)' **[Cosmo: the Gate](https://play.google.com/store/apps/details?id=com.modhaus.cosmo)** mobile application API.
 
+Requires a runtime with `SubtleCrypto` support, e.g. Node.js >= 20.x
+
 ## Install
 
 ```bash
@@ -22,7 +24,7 @@ const client = createClient({
 });
 
 const artist = await client.artists.get("ARTMS");
-console.log(artist.members.length); // 5
+console.log(artist.artistMembers.length); // 5
 ```
 
 ## Note
