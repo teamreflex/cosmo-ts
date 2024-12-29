@@ -27,7 +27,7 @@ describe("ObjektAPI", () => {
     });
 
     it("should claim an objekt by its qr code", async () => {
-      expect(() => {
+      await expect(() => {
         return cosmo.objekts.claimBySerial("1234");
       }).rejects.toThrowError("not implemented");
     });
@@ -115,7 +115,7 @@ describe("ObjektAPI", () => {
   });
 
   it("should list the users 30 newest objekts", async () => {
-    expect(() => {
+    await expect(() => {
       return cosmo.objekts.ownedBy("0xABCDEF");
     }).rejects.toThrowError("not implemented");
   });

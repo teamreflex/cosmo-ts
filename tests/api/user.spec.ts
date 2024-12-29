@@ -45,13 +45,13 @@ describe("UserAPI", () => {
     });
 
     it("user search should throw an error", async () => {
-      expect(() => cosmo.users.search("example")).rejects.toThrowError(
+      await expect(() => cosmo.users.search("example")).rejects.toThrowError(
         new AccessTokenMissing()
       );
     });
 
     it("updating the device profile should throw an error", async () => {
-      expect(() =>
+      await expect(() =>
         cosmo.users.updateDeviceProfile({
           locale: "en",
           country: "nz",
@@ -69,19 +69,19 @@ describe("UserAPI", () => {
     });
 
     it("getting the current user should handle unauthorized requests", async () => {
-      expect(() => cosmo.users.me()).rejects.toThrowError(
+      await expect(() => cosmo.users.me()).rejects.toThrowError(
         new UnauthorizedError("missing Authorization header")
       );
     });
 
     it("user search should handle unauthorized requests", async () => {
-      expect(() => cosmo.users.search("example")).rejects.toThrowError(
+      await expect(() => cosmo.users.search("example")).rejects.toThrowError(
         new UnauthorizedError("missing Authorization header")
       );
     });
 
     it("updating the device profile should handle unauthorized requests", async () => {
-      expect(() =>
+      await expect(() =>
         cosmo.users.updateDeviceProfile({
           locale: "en",
           country: "nz",

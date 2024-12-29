@@ -24,7 +24,7 @@ describe("NewsAPI", () => {
 
   describe("unauthenticated", () => {
     it("home page news should throw an error", async () => {
-      expect(() => cosmo.news.home("ARTMS")).rejects.toThrowError(
+      await expect(() => cosmo.news.home("ARTMS")).rejects.toThrowError(
         new AccessTokenMissing()
       );
     });
@@ -37,7 +37,7 @@ describe("NewsAPI", () => {
     });
 
     it("home page news should handle unauthorized requests", async () => {
-      expect(() => cosmo.news.home("ARTMS")).rejects.toThrowError(
+      await expect(() => cosmo.news.home("ARTMS")).rejects.toThrowError(
         new UnauthorizedError("missing Authorization header")
       );
     });

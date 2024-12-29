@@ -24,7 +24,7 @@ describe("NewsAPI - BFF", () => {
 
   describe("unauthenticated", () => {
     it("fetching the news feed should throw an error", async () => {
-      expect(() =>
+      await expect(() =>
         cosmo.news.feedBff({ artistName: "ARTMS" })
       ).rejects.toThrowError(new AccessTokenMissing());
     });
@@ -37,7 +37,7 @@ describe("NewsAPI - BFF", () => {
     });
 
     it("fetching the news feed should handle unauthorized requests", async () => {
-      expect(() =>
+      await expect(() =>
         cosmo.news.feedBff({ artistName: "ARTMS" })
       ).rejects.toThrowError(
         new UnauthorizedError(
