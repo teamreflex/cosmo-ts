@@ -4,39 +4,29 @@ import { AccessTokenMissing } from "../errors";
 
 export class ArtistAPI extends BaseAPI {
   /**
-   * Get the list of artists available.
-   *
+   * List all artists.
    * Authentication is not required.
    */
   async list() {
-    const response = await this.request<{
-      artists: Artist.Artist[];
-    }>("/artist/v1");
-
-    if (!response.artists) {
-      return [];
-    }
-
-    return response.artists;
+    return await this.request<Artist.Artist[]>(`/bff/v3/artists`);
   }
 
   /**
    * Get a single artist.
-   *
    * Authentication is not required.
    */
   async get(artist: ValidArtist) {
-    return await this.request<{
-      artist: Artist.ArtistWithMembers;
-    }>(`/artist/v1/${artist}`).then((res) => res.artist);
+    return await this.request<Artist.ArtistWithMembers>(
+      `/bff/v3/artists/${artist}`
+    );
   }
 
   /**
-   * Get a single artist from the backend for frontend endpoint.
-   *
+   * Get a single artist.
    * Authentication is required.
+   * @deprecated Use `get` instead.
    */
-  async bffGet(artist: ValidArtist) {
+  async getV1(artist: ValidArtist) {
     if (!this.config.accessToken) {
       throw new AccessTokenMissing();
     }
@@ -46,9 +36,9 @@ export class ArtistAPI extends BaseAPI {
       tid: randomUUID(),
     });
 
-    return await this.request<{
-      artist: Artist.BFFArtist;
-    }>(`/bff/v1/artist?${params.toString()}`);
+    return await this.request<Artist.ArtistV1>(
+      `/bff/v1/artist?${params.toString()}`
+    );
   }
 }
 
@@ -62,6 +52,7 @@ export type ValidArtist = (typeof validArtists)[number] | (string & {});
 
 export namespace Artist {
   export type Artist = {
+    id: string;
     name: string;
     title: string;
     fandomName: string;
@@ -83,15 +74,31 @@ export namespace Artist {
     units: string[];
     alias: string;
     profileImageUrl: string;
-    mainObjektImageUrl: string;
     order: number;
+    createdAt: string;
+    updatedAt: string;
+    mainObjektImageUrl: string;
+    artistId: string;
+    primaryColorHex: string;
+  };
+
+  export type SNSLink = {
+    name: string;
+    address: string;
   };
 
   export type ArtistWithMembers = Artist & {
-    members: Member[];
+    artistMembers: Member[];
+    snsLink: {
+      discord: SNSLink;
+      instagram: SNSLink;
+      twitter: SNSLink;
+      youtube: SNSLink;
+      tiktok: SNSLink;
+    };
   };
 
-  export type BFFArtist = Artist & {
+  export type ArtistV1 = Omit<Artist, "id"> & {
     createdAt: string;
     createdBy: string;
     updatedAt: string;

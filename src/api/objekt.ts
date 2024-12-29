@@ -2,7 +2,7 @@ import { z } from "zod";
 import { BaseAPI } from "./base-api";
 import { objektFilterSchema } from "../zod/objekt";
 import { AccessTokenMissing } from "../errors";
-import { ValidArtist } from "./artist";
+import { ValidArtist } from "./legacy-artist";
 
 export class ObjektAPI extends BaseAPI {
   /**

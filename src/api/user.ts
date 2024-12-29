@@ -1,5 +1,5 @@
 import { AccessTokenMissing } from "../errors";
-import { Artist, ValidArtist } from "./artist";
+import { LegacyArtist, ValidArtist } from "./legacy-artist";
 import { BaseAPI } from "./base-api";
 
 export class UserAPI extends BaseAPI {
@@ -77,7 +77,7 @@ export namespace User {
     profile: Profile[];
   };
 
-  export type FollowedArtist = Artist.Artist & {
+  export type FollowedArtist = LegacyArtist.Artist & {
     receivedWelcomeObjekt: boolean;
     purchaseCount: number;
     assetBalance: {

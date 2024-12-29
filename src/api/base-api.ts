@@ -31,7 +31,7 @@ export class BaseAPI {
 
     if (response.ok === false) {
       try {
-        if (url.includes("/bff/v1/")) {
+        if (url.startsWith("/bff/")) {
           const body: CosmoBFFErrorResponse = await response.json();
 
           switch (response.status) {

@@ -1,4 +1,4 @@
-import { ValidArtist } from "./artist";
+import { ValidArtist } from "./legacy-artist";
 import { BaseAPI } from "./base-api";
 
 export class SeasonAPI extends BaseAPI {

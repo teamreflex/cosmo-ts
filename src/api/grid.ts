@@ -1,6 +1,6 @@
 import { BaseAPI } from "./base-api";
 import { AccessTokenMissing, BadRequestError, CosmoError } from "../errors";
-import { ValidArtist } from "./artist";
+import { ValidArtist } from "./legacy-artist";
 
 export class GridAPI extends BaseAPI {
   /**

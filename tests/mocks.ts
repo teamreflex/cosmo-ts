@@ -6,9 +6,15 @@ const cosmo = (path: string) => `https://api.cosmo.fans${path}`;
 // default handlers
 export const handlers = [
   // artist
-  http.get(cosmo("/artist/v1"), () => HttpResponse.json(json.getArtists)),
-  http.get(cosmo("/artist/v1/*"), () => HttpResponse.json(json.getArtist)),
-  http.get(cosmo("/bff/v1/artist"), () => HttpResponse.json(json.getArtistBff)),
+  http.get(cosmo("/bff/v3/artists"), () =>
+    HttpResponse.json(json.getArtistsBff)
+  ),
+  http.get(cosmo("/bff/v3/artists/*"), () =>
+    HttpResponse.json(json.getArtistBff)
+  ),
+  http.get(cosmo("/bff/v1/artist"), () =>
+    HttpResponse.json(json.getArtistBffV1)
+  ),
 
   // user
   http.get(cosmo("/user/v1/me"), () => HttpResponse.json(json.getUser)),
@@ -90,6 +96,10 @@ export const handlers = [
   http.post(cosmo("/grid/v1/*/claim-reward"), () =>
     HttpResponse.json(json.gridClaim)
   ),
+
+  // legacy artist
+  http.get(cosmo("/artist/v1"), () => HttpResponse.json(json.getArtists)),
+  http.get(cosmo("/artist/v1/*"), () => HttpResponse.json(json.getArtist)),
 ];
 
 // authorization handlers

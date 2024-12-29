@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Artist, ValidArtist } from "./artist";
+import { LegacyArtist, ValidArtist } from "./legacy-artist";
 import { BaseAPI } from "./base-api";
 import { bffNewsFeedSchema, newsFeedSchema } from "../zod/news";
 import { AccessTokenMissing } from "../errors";
@@ -173,7 +173,7 @@ export namespace NewsBFF {
       totalLikeCount: number;
       url: string;
     };
-    artist: Artist.Artist;
+    artist: LegacyArtist.Artist;
     images: FeedItemImage[];
     isLiked: boolean;
   };

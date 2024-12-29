@@ -1,5 +1,5 @@
 import { Config } from "./config";
-import { ArtistAPI } from "./api/artist";
+import { LegacyArtistAPI } from "./api/legacy-artist";
 import { AuthAPI } from "./api/auth";
 import { GridAPI } from "./api/grid";
 import { NewsAPI } from "./api/news";
@@ -7,6 +7,7 @@ import { ObjektAPI } from "./api/objekt";
 import { RewardsAPI } from "./api/rewards";
 import { SeasonAPI } from "./api/season";
 import { UserAPI } from "./api/user";
+import { ArtistAPI } from "./api/artist";
 
 export class CosmoClient {
   private config: Config;
@@ -18,6 +19,9 @@ export class CosmoClient {
   public objekts: ObjektAPI;
   public rewards: RewardsAPI;
   public grid: GridAPI;
+  public legacy: {
+    artists: LegacyArtistAPI;
+  };
 
   constructor(config: Config) {
     this.config = {
@@ -33,6 +37,9 @@ export class CosmoClient {
     this.objekts = new ObjektAPI(this.config);
     this.rewards = new RewardsAPI(this.config);
     this.grid = new GridAPI(this.config);
+    this.legacy = {
+      artists: new LegacyArtistAPI(this.config),
+    };
   }
 
   /**

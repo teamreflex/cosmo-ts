@@ -96,7 +96,148 @@
     }
   },
 
+  "getArtistsBff": [
+    {
+      "id": "tripleS",
+      "title": "tripleS",
+      "logoImageUrl": "https://static.cosmo.fans/assets/triples-logo.png",
+      "contracts": {
+        "Como": "0x58AeABfE2D9780c1bFcB713Bf5598261b15dB6e5",
+        "ComoMinter": "0x1f6Be90bCb84523beF86E8cD1E8F1944Ca30eb5F",
+        "CommunityPool": "0xdAE81c4c069c86fea2FC08cfD53a4201D661e447",
+        "Objekt": "0xA4B37bE40F7b231Ee9574c4b16b7DDb7EAcDC99B",
+        "ObjektMinter": "0x3D898E02DFA77a1Ef69Ab8Ec369200a2e48DC5E3",
+        "Governor": "0xc3E5ad11aE2F00c740E74B81f134426A3331D950"
+      },
+      "fandomName": "WAV",
+      "primaryImageUrl": "https://s3.ap-northeast-2.amazonaws.com/resources.cosmo.fans/artist/tripleS.jpg",
+      "name": "tripleS"
+    },
+    {
+      "id": "artms",
+      "title": "ARTMS",
+      "logoImageUrl": "https://static.cosmo.fans/assets/artms-logo.png",
+      "contracts": {
+        "Como": "0x8254D8D2903B20187cBC4Dd833d49cECc219F32E",
+        "ComoMinter": "0x9640531cA96691b7F38e88fA17badAD90534d2A5",
+        "CommunityPool": "0x07F93cCc90aF32E4d6ea70A93F36DF9F58C97087",
+        "Objekt": "0x0fB69F54bA90f17578a59823E09e5a1f8F3FA200",
+        "ObjektMinter": "0x9009e2b4fc02eb18e41994d235a78504600AC87c",
+        "Governor": "0x8466e6E218F0fe438Ac8f403f684451D20E59Ee3"
+      },
+      "fandomName": "OURII",
+      "primaryImageUrl": "https://s3.ap-northeast-2.amazonaws.com/resources.cosmo.fans/artist/ARTMS.jpg",
+      "name": "artms"
+    }
+  ],
+
   "getArtistBff": {
+    "name": "artms",
+    "id": "artms",
+    "title": "ARTMS",
+    "logoImageUrl": "https://static.cosmo.fans/assets/artms-logo.png",
+    "contracts": {
+      "Como": "0x8254D8D2903B20187cBC4Dd833d49cECc219F32E",
+      "ComoMinter": "0x9640531cA96691b7F38e88fA17badAD90534d2A5",
+      "CommunityPool": "0x07F93cCc90aF32E4d6ea70A93F36DF9F58C97087",
+      "Objekt": "0x0fB69F54bA90f17578a59823E09e5a1f8F3FA200",
+      "ObjektMinter": "0x9009e2b4fc02eb18e41994d235a78504600AC87c",
+      "Governor": "0x8466e6E218F0fe438Ac8f403f684451D20E59Ee3"
+    },
+    "fandomName": "OURII",
+    "primaryImageUrl": "https://s3.ap-northeast-2.amazonaws.com/resources.cosmo.fans/artist/ARTMS.jpg",
+    "artistMembers": [
+      {
+        "id": 15,
+        "name": "HeeJin",
+        "units": "",
+        "alias": "HeeJin",
+        "profileImageUrl": "https://static.cosmo.fans/images/artms/HeeJin.jpg",
+        "order": 1,
+        "createdAt": "2023-05-31T16:12:55.865Z",
+        "updatedAt": "2024-05-24T06:59:17.144Z",
+        "mainObjektImageUrl": "https://via.placeholder.com/328x488?text=Objekt",
+        "artistId": "artms",
+        "primaryColorHex": "#ED0090"
+      },
+      {
+        "id": 20,
+        "name": "HaSeul",
+        "units": "",
+        "alias": "HaSeul",
+        "profileImageUrl": "https://static.cosmo.fans/images/artms/HaSeul.jpg",
+        "order": 2,
+        "createdAt": "2023-07-04T20:23:25.000Z",
+        "updatedAt": "2024-05-24T06:59:17.169Z",
+        "mainObjektImageUrl": "https://via.placeholder.com/328x488?text=Objekt",
+        "artistId": "artms",
+        "primaryColorHex": "#00A652"
+      },
+      {
+        "id": 16,
+        "name": "KimLip",
+        "units": "OEC",
+        "alias": "KimLip",
+        "profileImageUrl": "https://static.cosmo.fans/images/artms/KimLip.jpg",
+        "order": 3,
+        "createdAt": "2023-05-31T16:12:55.880Z",
+        "updatedAt": "2024-05-24T06:59:17.193Z",
+        "mainObjektImageUrl": "https://via.placeholder.com/328x488?text=Objekt",
+        "artistId": "artms",
+        "primaryColorHex": "#EF1841"
+      },
+      {
+        "id": 17,
+        "name": "JinSoul",
+        "units": "OEC",
+        "alias": "JinSoul",
+        "profileImageUrl": "https://static.cosmo.fans/images/artms/JinSoul.jpg",
+        "order": 4,
+        "createdAt": "2023-05-31T16:12:55.895Z",
+        "updatedAt": "2024-05-24T06:59:17.219Z",
+        "mainObjektImageUrl": "https://via.placeholder.com/328x488?text=Objekt",
+        "artistId": "artms",
+        "primaryColorHex": "#1724A7"
+      },
+      {
+        "id": 18,
+        "name": "Choerry",
+        "units": "OEC",
+        "alias": "Choerry",
+        "profileImageUrl": "https://static.cosmo.fans/images/artms/Choerry.jpg",
+        "order": 5,
+        "createdAt": "2023-05-31T16:12:55.907Z",
+        "updatedAt": "2024-05-24T06:59:17.244Z",
+        "mainObjektImageUrl": "https://via.placeholder.com/328x488?text=Objekt",
+        "artistId": "artms",
+        "primaryColorHex": "#B510B5"
+      }
+    ],
+    "snsLink": {
+      "discord": {
+        "name": "discord.gg/official-artms",
+        "address": "https://discord.com/invite/official-artms"
+      },
+      "instagram": {
+        "name": "@official_artms",
+        "address": "https://www.instagram.com/official_artms"
+      },
+      "twitter": {
+        "name": "@official_artms",
+        "address": "https://x.com/official_artms"
+      },
+      "youtube": {
+        "name": "@official_artms",
+        "address": "https://www.youtube.com/@official_artms"
+      },
+      "tiktok": {
+        "name": "tiktok.com/@official_artms",
+        "address": "https://tiktok.com/@official_artms"
+      }
+    }
+  },
+
+  "getArtistBffV1": {
     "name": "artms",
     "title": "ARTMS",
     "fandomName": "OURII",
@@ -111,8 +252,8 @@
       "Governor": "0x8466e6E218F0fe438Ac8f403f684451D20E59Ee3"
     },
     "createdAt": "2023-06-16T16:09:58.818Z",
-    "createdBy": "email@example.com",
-    "updatedAt": "2024-06-20T08:49:30.703Z",
+    "createdBy": "hyojun@mod-haus.com",
+    "updatedAt": "2024-12-10T07:27:17.462Z",
     "activeAt": "2023-06-17T05:53:17.000Z",
     "order": 2
   },
