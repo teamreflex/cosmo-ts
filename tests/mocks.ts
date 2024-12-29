@@ -62,7 +62,7 @@ export const handlers = [
     HttpResponse.json(json.getBySerial)
   ),
   http.post(cosmo("/objekt/v1/by-serial/*/claim"), () =>
-    HttpResponse.json(json.claimBySerial)
+    HttpResponse.json(undefined, { status: 201 })
   ),
   http.post(cosmo("/lenticular/v1"), () =>
     HttpResponse.json(undefined, { status: 201 })

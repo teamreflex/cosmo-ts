@@ -1,11 +1,10 @@
 import { BaseAPI } from "./base-api";
 import { AccessTokenMissing, BadRequestError, CosmoError } from "../errors";
-import { ValidArtist } from "./legacy-artist";
+import { ValidArtist } from "../types/artist-common";
 
 export class GridAPI extends BaseAPI {
   /**
    * Get the grid status/counts for the given artist.
-   *
    * Authentication is required.
    */
   async artistStatus(artist: ValidArtist) {
@@ -18,7 +17,6 @@ export class GridAPI extends BaseAPI {
 
   /**
    * Get the list of editions for the given artist.
-   *
    * Authentication is required.
    */
   async editions(artist: ValidArtist) {
@@ -33,7 +31,6 @@ export class GridAPI extends BaseAPI {
 
   /**
    * Get the required objekts and rewards for the given edition.
-   *
    * Authentication is required.
    */
   async editionGrids(edition: string) {
@@ -48,7 +45,6 @@ export class GridAPI extends BaseAPI {
 
   /**
    * Get the current state of the given grid.
-   *
    * Authentication is required.
    */
   async gridStatus(gridId: string) {
@@ -63,7 +59,6 @@ export class GridAPI extends BaseAPI {
 
   /**
    * Complete a grid.
-   *
    * Authentication is required.
    */
   async complete(gridId: string, slots: Grid.SlotCompletion[]) {
@@ -97,7 +92,6 @@ export class GridAPI extends BaseAPI {
   /**
    * Claim a grid reward.
    * Must be called after {@link complete}.
-   *
    * Authentication is required.
    */
   async claim(gridId: string) {

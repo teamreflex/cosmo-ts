@@ -5,7 +5,6 @@ import { signInSchema } from "../zod/auth";
 export class AuthAPI extends BaseAPI {
   /**
    * Sign in with Ramper credentials.
-   *
    * Authentication is not required.
    */
   async signIn(payload: Auth.LoginPayload) {
@@ -17,7 +16,6 @@ export class AuthAPI extends BaseAPI {
 
   /**
    * Refresh an access token.
-   *
    * Authentication is not required.
    */
   async refreshToken(refreshToken: string) {

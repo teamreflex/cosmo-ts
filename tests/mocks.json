@@ -1081,30 +1081,6 @@
     "isClaimed": true
   },
 
-  "claimBySerial": {
-    "objekt": {
-      "collectionId": "Atom01 JiWoo 100Z",
-      "season": "Atom01",
-      "member": "JiWoo",
-      "collectionNo": "100Z",
-      "class": "Welcome",
-      "artists": ["tripleS"],
-      "thumbnailImage": "https://imagedelivery.net/qQuMkbHJ-0s6rwu8vup_5w/bd31d000-fa7b-4518-dd27-58cde1faf200/thumbnail",
-      "frontImage": "https://imagedelivery.net/qQuMkbHJ-0s6rwu8vup_5w/bd31d000-fa7b-4518-dd27-58cde1faf200/3x",
-      "backImage": "https://imagedelivery.net/qQuMkbHJ-0s6rwu8vup_5w/78f14332-1f28-4745-d49a-06684a8d4f00/3x",
-      "accentColor": "#F1F2F2",
-      "backgroundColor": "#F1F2F2",
-      "textColor": "#000000",
-      "comoAmount": 1,
-      "transferableByDefault": true,
-      "tokenId": "1",
-      "tokenAddress": "0xA4B37bE40F7b231Ee9574c4b16b7DDb7EAcDC99B",
-      "objektNo": 1,
-      "transferable": false
-    },
-    "isClaimed": true
-  },
-
   "token": {
     "name": "Atom01 JinSoul 310Z #5",
     "description": "ARTMS\n——————————————————\nObjekt is a NFT photo card of ARTMS.\nUsers can acquire (as a reward or buy), collect, and trade their Objekt in COSMO, our exclusive app.\nYou can also mint your physical Objekt by scanning its QR code by COSMO.",

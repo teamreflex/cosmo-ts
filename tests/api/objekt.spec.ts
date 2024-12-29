@@ -27,9 +27,8 @@ describe("ObjektAPI", () => {
     });
 
     it("should claim an objekt by its qr code", async () => {
-      await expect(() => {
-        return cosmo.objekts.claimBySerial("1234");
-      }).rejects.toThrowError("not implemented");
+      const response = await cosmo.objekts.claimBySerial("1234");
+      expect(response).toEqual(true);
     });
 
     it("should apply lenticular to two objekts", async () => {
@@ -95,7 +94,7 @@ describe("ObjektAPI", () => {
 
     it("claiming an objekt by its qr code should handle unauthorized requests", async () => {
       await expect(cosmo.objekts.claimBySerial("1234")).rejects.toThrowError(
-        new Error("not implemented")
+        new UnauthorizedError("missing Authorization header")
       );
     });
 

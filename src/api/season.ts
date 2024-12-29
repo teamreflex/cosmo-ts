@@ -1,10 +1,9 @@
-import { ValidArtist } from "./legacy-artist";
+import { ValidArtist } from "../types/artist-common";
 import { BaseAPI } from "./base-api";
 
 export class SeasonAPI extends BaseAPI {
   /**
    * Get the seasons for the given artist.
-   *
    * Authentication is not required.
    */
   async list(artist: ValidArtist) {

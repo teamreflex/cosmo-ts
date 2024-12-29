@@ -4,7 +4,6 @@ import { AccessTokenMissing, BadRequestError } from "../errors";
 export class RewardsAPI extends BaseAPI {
   /**
    * Display the list of pending rewards.
-   *
    * Authentication is required.
    */
   async list() {
@@ -23,7 +22,6 @@ export class RewardsAPI extends BaseAPI {
 
   /**
    * Check if there are any pending rewards.
-   *
    * Authentication is required.
    */
   async check() {
@@ -42,7 +40,6 @@ export class RewardsAPI extends BaseAPI {
 
   /**
    * Claim all pending rewards.
-   *
    * Authentication is required.
    */
   async claim() {

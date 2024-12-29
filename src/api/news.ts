@@ -8,7 +8,6 @@ import { LegacyArtist } from "./legacy-artist";
 export class NewsAPI extends BaseAPI {
   /**
    * Get home page news sections for the given artist.
-   *
    * Authentication is required.
    */
   async home(artist: ValidArtist) {
@@ -23,7 +22,6 @@ export class NewsAPI extends BaseAPI {
 
   /**
    * Get the news feed for the given artist.
-   *
    * Authentication is not required.
    */
   async feed({ artist, startAfter = 0, limit = 10 }: News.Payload) {
@@ -40,7 +38,6 @@ export class NewsAPI extends BaseAPI {
 
   /**
    * Get the exclusive news feed for the given artist.
-   *
    * Authentication is not required.
    */
   async exclusive({ artist, startAfter = 0, limit = 10 }: News.Payload) {
@@ -57,7 +54,6 @@ export class NewsAPI extends BaseAPI {
 
   /**
    * Get the news feed for the given artist via the backend for frontend endpoint.
-   *
    * Authentication is required.
    */
   async feedBff({ artistName, page = 1, size = 10 }: NewsBFF.Payload) {

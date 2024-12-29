@@ -2,12 +2,11 @@ import { z } from "zod";
 import { BaseAPI } from "./base-api";
 import { objektFilterSchema } from "../zod/objekt";
 import { AccessTokenMissing } from "../errors";
-import { ValidArtist } from "./legacy-artist";
+import { ValidArtist } from "../types/artist-common";
 
 export class ObjektAPI extends BaseAPI {
   /**
    * Get the available objekt filters.
-   *
    * Authentication is required.
    */
   async filters(artist?: ValidArtist) {
@@ -25,7 +24,6 @@ export class ObjektAPI extends BaseAPI {
 
   /**
    * Get an objekt by its QR/odmq code.
-   *
    * Authentication is required.
    */
   async getBySerial(serial: string) {
@@ -41,7 +39,6 @@ export class ObjektAPI extends BaseAPI {
 
   /**
    * Claim an objekt by its QR/odmq code.
-   *
    * Authentication is required.
    */
   async claimBySerial(serial: string) {
@@ -49,15 +46,13 @@ export class ObjektAPI extends BaseAPI {
       throw new AccessTokenMissing();
     }
 
-    throw new Error("not implemented");
-    return await this.request<boolean>(`/objekt/v1/by-serial/${serial}/claim`, {
+    return await this.request(`/objekt/v1/by-serial/${serial}/claim`, {
       method: "POST",
-    });
+    }).then(() => true);
   }
 
   /**
    * Get the objekts owned by the given address.
-   *
    * Authentication is not required.
    */
   async ownedBy(address: Objekt.OwnedBy, filters?: Objekt.CollectionParams) {
@@ -78,7 +73,6 @@ export class ObjektAPI extends BaseAPI {
 
   /**
    * Get a single token by its ID.
-   *
    * Authentication is not required.
    */
   async token(tokenId: Objekt.TokenId) {
@@ -87,7 +81,6 @@ export class ObjektAPI extends BaseAPI {
 
   /**
    * Put two tokens into a lenticular pair.
-   *
    * Authentication is required.
    */
   async applyLenticular(tokenA: Objekt.TokenId, tokenB: Objekt.TokenId) {
@@ -106,7 +99,6 @@ export class ObjektAPI extends BaseAPI {
 
   /**
    * Remove a token from a lenticular pair.
-   *
    * Authentication is required.
    */
   async removeLenticular(tokenId: Objekt.TokenId) {
